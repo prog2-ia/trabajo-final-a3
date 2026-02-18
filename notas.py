@@ -6,6 +6,6 @@ def notas():
     notas.append(3)
     notas.append(4)
 
-    return notass
+    return notas
 
 print(notas())
