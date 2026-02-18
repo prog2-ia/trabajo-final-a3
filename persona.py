@@ -11,6 +11,6 @@ class Persona:
         cadena = f'Persona {self.nombre} {self.apellido} -DNI: {self.dni}'
 
         if self.tarjeta_premium:
-            cadena += f' -Tarjeta: {self.tarjeta_premi}'
+            cadena += f' -Tarjeta: {self.tarjeta_premium}'
 
         return cadena
