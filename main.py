@@ -35,7 +35,7 @@ if __name__ == '__main__':
     personas = []
     tarjetas = []
 
-    for _ in range(10):
+    for i in range(10):
         dni = generar_dni()
         nombre = generar_nombre()
         apellido = generar_apellido()
