@@ -8,7 +8,7 @@ class Persona:
         self.tarjeta_premium = tarjeta_premium
 
     def __str__(self):
-        cadena = f'Persona {self.nombre} {self.apellido} -DNI: {self.dni}'
+        cadena = f'Nombre y Apellido: {self.nombre} {self.apellido} -DNI: {self.dni}'
 
         if self.tarjeta_premium:
             cadena += f' -Tarjeta: {self.tarjeta_premium}'

@@ -1,22 +1,52 @@
 # main.py
 from persona import Persona
+from tarjeta_premium import Tarjeta
 import random
 
-vocales = random.choice(['A','E','I','O','U'])
-numeros = random.randint(11111111,99999999)
-dni = str(numeros)+vocales
-from tarjeta_premium import Tarjeta
+# Funciones
+def generar_dni():
+    letra_aleatoria = chr(random.randint(65, 90))
+    numeros = random.randint(11111111,99999999)
+    dni = str(numeros) + letra_aleatoria
+
+    return dni
+
+def generar_nombre():
+    nombres = [
+        'Carlos', 'Lucía', 'María', 'Pedro', 'Ana',
+        'Javier', 'Marta', 'Sofía', 'Diego', 'Elena',
+        'Raúl', 'Nohelia', 'Iván', 'Laura', 'Miguel'
+    ]
+
+    return random.choice(nombres)
+
+def generar_apellido():
+    apellidos = [
+        'García', 'López', 'Martínez', 'Sánchez',
+        'Pérez', 'Gómez', 'Ruiz', 'Fernández',
+        'Torres', 'Díaz', 'Morales', 'Romero'
+    ]
+    return random.choice(apellidos)
+
+
 
 if __name__ == '__main__':
     # Crear personas
-    persona1 = Persona('72019838Y', 'Carolina', 'Marzo')
-    persona2 = Persona('13033927S', 'Aurelio', 'Roldán')
-    persona3 = Persona('33901875T', 'Elena', 'Barea')
-    persona4 = Persona('78901765M', 'Ainoha', 'Bogarea')
-    persona5 = Persona('78201823O', 'Nohelia', 'Montoya')
-    persona6 = Persona('19029187J', 'Ronny', 'Belger')
-    persona7 = Persona('91802738P', 'Benny', 'Polay')
+    personas = []
+    tarjetas = []
+
+    for _ in range(10):
+        dni = generar_dni()
+        nombre = generar_nombre()
+        apellido = generar_apellido()
+
+        persona = Persona(dni, nombre, apellido)
+
+        personas.append(persona)
+
+
+    # Mostrar resultados
+    for persona in personas:
+        print(persona)
 
     # Crear tarjetas premium
-    tarjeta1 = Tarjeta()
-    tarjeta2 = Tarjeta
