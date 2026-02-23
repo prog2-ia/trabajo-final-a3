@@ -1,6 +1,7 @@
 # main.py
 from persona import Persona
 from tarjeta_premium import Tarjeta
+from producto import Producto
 import random
 
 # Funciones
@@ -50,3 +51,6 @@ if __name__ == '__main__':
         print(persona)
 
     # Crear tarjetas premium
+    cartera = Producto('11111', 'cartera', 7.99, 'Tamara', 'Usado', 1, '20-01-2025')
+    cartera.validar_precio()
+    cartera.esta_disponible()
