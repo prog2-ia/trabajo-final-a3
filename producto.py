@@ -19,6 +19,9 @@ class Producto:
         if self.precio <= 0:
             print('Precio no valido')
             return False
+        else:
+            print('Precio valido')
+            return True
 
     def esta_disponible(self):
         if self.stock == 0:
