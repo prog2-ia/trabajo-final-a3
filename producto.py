@@ -15,11 +15,19 @@ class Producto:
 
         return cadena
 
-    def validar_precio(self)
+    def validar_precio(self):
         if self.precio <= 0:
             print('Precio no valido')
             return False
 
-    #def esta_disponible(self, ):
-    #def reducir_stock(self):
+    def esta_disponible(self):
+        if self.stock == 0:
+            print('No hay stock disponible')
+            return False
+        else:
+            print(f'Stock disponible: {self.stock} unidades de {self.nombre}')
+
+  #  def reducir_stock(self): cuando se compre algún producto
+
+
 
