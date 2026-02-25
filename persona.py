@@ -20,7 +20,7 @@ class Persona:
 
     def publicar_producto(self, producto, marketplace):
         marketplace.producto.append(Producto())
-        print(f'{self.nombre} publicó el producto: {producto.titulo} )
+        print(f'{self.nombre} publicó el producto: {producto.titulo}')
 
 
     def comprar(self, producto):
