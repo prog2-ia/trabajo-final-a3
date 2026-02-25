@@ -18,9 +18,10 @@ class Persona:
 
         return cadena
 
-    def publicar_producto(self, producto, marketplace):
+    def publicar_producto(self, datos_producto, marketplace):
+        producto = Producto.desde_diccionario(datos_producto, self)
         marketplace.productos.append(producto)
-        print(f'{self.nombre} publicó el producto: {producto.titulo}')
+        print(f"{self.nombre} publicó el producto: {producto.titulo}")
 
 
     def comprar(self, producto):
