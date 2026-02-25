@@ -1,7 +1,6 @@
 # persona.py
 from producto import Producto
 
-
 class Persona:
     def __init__(self, dni, nombre, apellido, tarjeta_premium = None):
         self.dni = dni
@@ -21,7 +20,7 @@ class Persona:
     def publicar_producto(self, datos_producto, marketplace):
         producto = Producto.desde_diccionario(datos_producto, self)
         marketplace.productos.append(producto)
-        print(f"{self.nombre} publicó el producto: {producto.titulo}")
+        print(f'{self.nombre} publicó el producto: {producto.titulo}')
 
 
     def comprar(self, producto):
