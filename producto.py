@@ -10,6 +10,18 @@ class Producto:
         self.stock = stock
         self.fecha_publicacion = fecha_publicacion
 
+    @classmethod
+    def desde_diccionario(cls, datos, vendedor):
+        return cls(
+            datos['id'],
+            datos['titulo'],
+            datos['precio'],
+            vendedor,
+            datos['estado'],
+            datos['stock'],
+            datos['fecha_publicacion']
+        )
+
     def __str__(self):
         cadena = f'Producto: {self.titulo} | Precio: {self.precio} € | Stock: {self.stock}'
 

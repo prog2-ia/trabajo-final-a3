@@ -3,11 +3,11 @@ from producto import Producto
 
 
 class Persona:
-    def __init__(self, dni, nombre, apellido, email, tarjeta_premium = None):
+    def __init__(self, dni, nombre, apellido, tarjeta_premium = None):
         self.dni = dni
         self.nombre = nombre
         self.apellido = apellido
-        self.email = email
+       # self.email = email
         self.tarjeta_premium = tarjeta_premium
 
     def __str__(self):
@@ -19,7 +19,7 @@ class Persona:
         return cadena
 
     def publicar_producto(self, producto, marketplace):
-        marketplace.producto.append(Producto())
+        marketplace.productos.append(producto)
         print(f'{self.nombre} publicó el producto: {producto.titulo}')
 
 
@@ -35,5 +35,5 @@ class Persona:
         print(f' {self.nombre} compró {producto.titulo}')
 
     def enviar_mensaje(self, conversacion, texto):
-            conversacion.agregar_mensaje(self, texto)
+        conversacion.agregar_mensaje(self, texto)
 #terminar

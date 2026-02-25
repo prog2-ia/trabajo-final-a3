@@ -29,9 +29,12 @@ def generar_apellido():
     ]
     return random.choice(apellidos)
 
-
+class Marketplace:
+    def __init__(self):
+        self.productos = []
 
 if __name__ == '__main__':
+    marketplace = Marketplace()
     # Crear personas
     personas = []
     tarjetas = []
@@ -54,3 +57,4 @@ if __name__ == '__main__':
     cartera = Producto('11111', 'cartera', 7.99, 'Tamara', 'Usado', 1, '20-01-2025')
     cartera.validar_precio()
     cartera.esta_disponible()
+
