@@ -1,9 +1,9 @@
 # producto.py
 
 class Producto:
-    def __init__(self, id, nombre, precio, vendedor, estado, stock, fecha_publicacion):
+    def __init__(self, id, titulo, precio, vendedor, estado, stock, fecha_publicacion):
         self.id = id
-        self.nombre = nombre
+        self.titulo = titulo
         self.precio = precio
         self.vendedor = vendedor
         self.estado = estado
@@ -11,7 +11,7 @@ class Producto:
         self.fecha_publicacion = fecha_publicacion
 
     def __str__(self):
-        cadena = f'Producto: {self.nombre} | Precio: {self.precio} € | Stock: {self.stock}'
+        cadena = f'Producto: {self.titulo} | Precio: {self.precio} € | Stock: {self.stock}'
 
         return cadena
 
@@ -28,7 +28,7 @@ class Producto:
             print('No hay stock disponible')
             return False
         else:
-            print(f'Stock disponible: {self.stock} unidades de {self.nombre}')
+            print(f'Stock disponible: {self.stock} unidades de {self.titulo}')
 
   #  def reducir_stock(self): cuando se compre algún producto
 

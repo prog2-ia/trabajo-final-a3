@@ -1,10 +1,11 @@
 # persona.py
 
 class Persona:
-    def __init__(self, dni, nombre, apellido, tarjeta_premium = None):
+    def __init__(self, dni, nombre, apellido, email, tarjeta_premium = None):
         self.dni = dni
         self.nombre = nombre
         self.apellido = apellido
+        self.email = email
         self.tarjeta_premium = tarjeta_premium
 
     def __str__(self):
