@@ -36,3 +36,4 @@ class Persona:
 
     def enviar_mensaje(self, conversacion, texto):
             conversacion.agregar_mensaje(self, texto)
+#terminar
