@@ -1,4 +1,4 @@
-# main.py
+# market_place.py
 from persona import Persona
 from tarjeta_premium import Tarjeta
 from producto import Producto

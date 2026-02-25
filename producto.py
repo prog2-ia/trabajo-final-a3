@@ -29,8 +29,16 @@ class Producto:
             return False
         else:
             print(f'Stock disponible: {self.stock} unidades de {self.titulo}')
+            return True
 
-  #  def reducir_stock(self): cuando se compre algún producto
-
-
-
+    def reducir_stock(self, cantidad):    #cuando se compre algún producto
+        if cantidad <= 0:
+            print('Cantidad no válida')
+            return False
+        elif self.stock < cantidad:
+            print('No hay suficiente stock disponible')
+            return False
+        else:
+            print('Cantidad reducida')
+            self.stock -= cantidad
+            return True
