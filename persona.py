@@ -1,4 +1,6 @@
 # persona.py
+from producto import Producto
+
 
 class Persona:
     def __init__(self, dni, nombre, apellido, email, tarjeta_premium = None):
@@ -15,3 +17,22 @@ class Persona:
             cadena += f' -Tarjeta: {self.tarjeta_premium}'
 
         return cadena
+
+def publicar_producto(self, producto, marketplace):
+    marketplace.producto.append(Producto())
+    print(f'{self.nombre} publicó el producto: {producto.titulo} )
+
+
+def comprar(self, producto):
+    if not producto.esta_disponible():
+        print('Producto no disponible')
+        return True
+
+    if self.importe < producto.precio:
+        print('Importe insuficiente')
+        return True
+    producto.reducir_stock()
+    print(f' {self.nombre} compró {producto.titulo}')
+
+def enviar_mensaje(self, conversacion, texto):
+        conversacion.agregar_mensaje(self, texto)
