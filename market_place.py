@@ -33,6 +33,7 @@ class Marketplace:
     def __init__(self):
         self.productos = []
 
+
 if __name__ == '__main__':
     marketplace = Marketplace()
     # Crear personas
@@ -48,13 +49,30 @@ if __name__ == '__main__':
 
         personas.append(persona)
 
+        datos_producto = {
+            "id": "11111",
+            "titulo": "Cartera",
+            "precio": 7.99,
+            "estado": "Usado",
+            "stock": 1,
+            "fecha_publicacion": "20-01-2025"
+        }
+
+# añadir listasssssssssss
+
 
     # Mostrar resultados
     for persona in personas:
         print(persona)
 
     # Crear tarjetas premium
-    cartera = Producto('11111', 'cartera', 7.99, 'Tamara', 'Usado', 1, '20-01-2025')
+    cartera = Producto('11111', 'monedero', 7.99, 'Tamara', 'Usado', 1, '20-01-2025')
     cartera.validar_precio()
     cartera.esta_disponible()
+
+    personas[0].publicar_producto(datos_producto, marketplace)
+    personas[1].comprar(cartera, 1)
+    cartera.esta_disponible()
+
+
 

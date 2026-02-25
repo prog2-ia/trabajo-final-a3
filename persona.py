@@ -20,18 +20,18 @@ class Persona:
     def publicar_producto(self, datos_producto, marketplace):
         producto = Producto.desde_diccionario(datos_producto, self)
         marketplace.productos.append(producto)
-        print(f'{self.nombre} publicó el producto: {producto.titulo}')
+        print(f'{self.nombre} {self.apellido} publicó el producto: {producto.titulo} a {producto.precio}€, el día {producto.fecha_publicacion}')
 
 
-    def comprar(self, producto):
+    def comprar(self, producto, cantidad):
         if not producto.esta_disponible():
             print('Producto no disponible')
-            return True
-
-        if self.importe < producto.precio:
-            print('Importe insuficiente')
-            return True
-        producto.reducir_stock()
+            return
+        #
+        # if self.importe < producto.precio:
+        #     print('Importe insuficiente')
+        #     return True
+        producto.reducir_stock(cantidad)
         print(f' {self.nombre} compró {producto.titulo}')
 
     def enviar_mensaje(self, conversacion, texto):
