@@ -1,5 +1,5 @@
 # estado_producto.py
 
-class estadoProductos:
-    def __init__(self, nombre):
-        self.nombre = nombre
+class EstadoProductos:
+    def __init__(self, estado):
+        self.estado = estado
