@@ -1,7 +1,7 @@
 # producto_coche.py
 from producto import Producto
 
-class Coche(Prodcuto):
+class Coche(Producto):
     def __init__(self, id, titulo, precio, vendedor, estado, stock, fecha_publicacion, matricula, marca, ano, combustible, kilometros_recorridos):
         super().__init__(id, titulo, precio, vendedor, estado, stock, fecha_publicacion)
         self.matricula = matricula
