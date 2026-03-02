@@ -50,12 +50,12 @@ if __name__ == '__main__':
         personas.append(persona)
 
         datos_producto = {
-            "id": "11111",
-            "titulo": "Cartera",
-            "precio": 7.99,
-            "estado": "Usado",
-            "stock": 1,
-            "fecha_publicacion": "20-01-2025"
+            'id': '11111',
+            'titulo': 'Cartera',
+            'precio': 7.99,
+            'estado': 'Usado',
+            'stock': 1,
+            'fecha_publicacion': '20-01-2025'
         }
 
 # añadir listasssssssssss
