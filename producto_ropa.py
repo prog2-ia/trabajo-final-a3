@@ -1,4 +1,5 @@
 # producto_ropa.py
+from producto import Producto
 
 class ProductoRopa(Producto):
     def __init__(self, id, titulo, precio, vendedor, estado, stock, fecha_publicacion, talla, material):

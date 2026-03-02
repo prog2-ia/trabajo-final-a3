@@ -66,7 +66,7 @@ if __name__ == '__main__':
         print(persona)
 
     # Crear tarjetas premium
-    cartera = Producto('11111', 'monedero', 7.99, 'Tamara', 'Usado', 1, '20-01-2025')
+    cartera = Producto('11111', 'monedero', 7.99, 'Ruperta', 'Usado', 1, '20-01-2025')
     cartera.validar_precio()
     cartera.esta_disponible()
 
