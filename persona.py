@@ -26,8 +26,8 @@ class Persona:
     def comprar(self, producto, cantidad):
         if not producto.esta_disponible():
             print('Producto no disponible')
-            return
-        #
+            return False
+
         # if self.importe < producto.precio:
         #     print('Importe insuficiente')
         #     return True
