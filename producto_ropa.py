@@ -7,3 +7,6 @@ class ProductoRopa(Producto):
         self.talla = talla
         self.material = material
 
+    def __str__(self):
+        return f'{super().__str__()} Talla: {self.talla}, Material: {self.material}'
+

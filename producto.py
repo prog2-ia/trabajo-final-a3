@@ -2,13 +2,13 @@
 
 class Producto:
     def __init__(self, id, titulo, precio, vendedor, estado, stock, fecha_publicacion):
-        self.id = id
-        self.titulo = titulo
-        self.precio = precio
-        self.vendedor = vendedor
-        self.estado = estado
-        self.stock = stock
-        self.fecha_publicacion = fecha_publicacion
+        self._id = id
+        self._titulo = titulo
+        self._precio = precio
+        self._vendedor = vendedor
+        self._estado = estado
+        self._stock = stock
+        self._fecha_publicacion = fecha_publicacion
 
     @classmethod
     def desde_diccionario(cls, datos, vendedor):
@@ -24,8 +24,37 @@ class Producto:
 
     def __str__(self):
         cadena = f'Producto: {self.titulo} | Precio: {self.precio} € | Stock: {self.stock}'
-
         return cadena
+
+    @property
+    def precio(self):
+        return self._precio
+
+    @precio.setter
+    def precio(self, valor):
+        if valor <= 0:
+            print("Precio no válido")
+        else:
+            self._precio = valor
+
+    @property
+    def stock(self):
+        return self._stock
+
+    @stock.setter
+    def stock(self, valor):
+        if valor < 0:
+            print("Stock no válido")
+        else:
+            self._stock = valor
+
+    @property
+    def titulo(self):
+        return self._titulo
+
+    @property
+    def id(self):
+        return self._id
 
     def validar_precio(self):
         if self.precio <= 0:

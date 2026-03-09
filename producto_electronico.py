@@ -8,3 +8,7 @@ class ProductoElectronico(Producto):
         self.marca = marca
         self.garantia = garantia
 
+
+    def __str__(self):
+        return f'{super().__str__()} Marca: {self.marca}, Modelo: {self.modelo}, Garantía: {self.garantia} años'
+
