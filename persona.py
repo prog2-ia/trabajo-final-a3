@@ -1,39 +1,73 @@
 # persona.py
+
+# Importamos la clase Producto desde el archivo producto.py
 from producto import Producto
 
-class Persona:
-    def __init__(self, dni, nombre, apellido, tarjeta_premium = None):
-        self.dni = dni
-        self.nombre = nombre
-        self.apellido = apellido
-       # self.email = email
-        self.tarjeta_premium = tarjeta_premium
 
+# Definición de la clase Persona
+class Persona:
+
+    # Constructor de la clase.
+    # Se ejecuta cuando se crea una nueva persona.
+    def __init__(self, dni, nombre, apellido, tarjeta_premium = None):
+        self.dni = dni                # DNI de la persona
+        self.nombre = nombre          # Nombre de la persona
+        self.apellido = apellido      # Apellido de la persona
+        # self.email = email          # Email
+        self.tarjeta_premium = tarjeta_premium  # Tarjeta premium opcional
+
+
+    # Metodo especial que define cómo se muestra el objeto al imprimirlo
     def __str__(self):
+
+        # Creamos una cadena con los datos básicos
         cadena = f'Nombre y Apellido: {self.nombre} {self.apellido} -DNI: {self.dni}'
 
+        # Si la persona tiene tarjeta premium, se añade a la cadena
         if self.tarjeta_premium:
             cadena += f' -Tarjeta: {self.tarjeta_premium}'
 
+        # Devolvemos la cadena final
         return cadena
 
+
+    # Metodo para que una persona publique un producto en el marketplace
     def publicar_producto(self, datos_producto, marketplace):
+
+        # Se crea un objeto Producto a partir de un diccionario de datos
+        # y se asocia a esta persona como vendedor
         producto = Producto.desde_diccionario(datos_producto, self)
+
+        # Se añade el producto a la lista de productos del marketplace
         marketplace.productos.append(producto)
+
+        # Mensaje informativo
         print(f'{self.nombre} {self.apellido} publicó el producto: {producto.titulo} a {producto.precio}€, el día {producto.fecha_publicacion}')
 
 
+    # Metodo para comprar un producto
     def comprar(self, producto, cantidad):
+
+        # Comprobamos si el producto está disponible
         if not producto.esta_disponible():
             print('Producto no disponible')
             return False
 
+        # Comprobación de dinero disponible
         # if self.importe < producto.precio:
         #     print('Importe insuficiente')
         #     return True
+
+        # Reducimos el stock del producto según la cantidad comprada
         producto.reducir_stock(cantidad)
+
+        # Mensaje de confirmación de compra
         print(f' {self.nombre} compró {producto.titulo}')
 
+
+    # Metodo para enviar un mensaje dentro de una conversación
     def enviar_mensaje(self, conversacion, texto):
+
+        # Se añade el mensaje a la conversación indicando quién lo envía
         conversacion.agregar_mensaje(self, texto)
-#terminar
+

@@ -1,20 +1,34 @@
 # carrito.py
 
+# Clase Carrito que representa la lista de compras de un comprador
 class Carrito:
-    def __init__(self, comprador, lista_productos):
+    # Constructor de la clase
+    # comprador: objeto Persona o Pagar
+    # lista_productos: lista de objetos Producto
+    def __init__(self, comprador, lista_productos=None):
         self.comprador = comprador
-        self.lista_productos = lista_productos
+        # Inicializamos la lista de productos como lista vacía si no se pasa nada
+        if lista_productos is None:
+            self.lista_productos = []
+        else:
+            self.lista_productos = lista_productos
+    # Metodo para agregar un producto al carrito
 
+    def agregar_producto(self, producto):
+        # Añadimos un producto a la lista
+        self.lista_productos.append(producto)
+        print(f'Producto {producto.titulo} agregado al carrito')
 
-    def agregar_productos(self):
-        self.lista_productos.add()
-
+    # Metodo para eliminar todos los productos del carrito
     def eliminar_productos(self):
         self.lista_productos.clear()
+        print('Carrito vaciado')
 
-  #  def calcular_total(self):
-      #  total = 0
-        #for producto in self.lista_productos:
-           # total += producto.valor
-           # return total
+    # Metodo para calcular el total del carrito
+    def calcular_total(self):
+        total = 0
+        # Sumamos el precio de todos los productos en la lista
+        for producto in self.lista_productos:
+            total += producto.precio
+        return total
 

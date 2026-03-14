@@ -1,14 +1,24 @@
 # producto_coche.py
+
+# Importamos la clase base Producto
 from producto import Producto
-
+# Clase ProductoCoche que hereda de Producto
 class ProductoCoche(Producto):
-    def __init__(self, id, titulo, precio, vendedor, estado, stock, fecha_publicacion, matricula, marca, ano, combustible, kilometros_recorridos):
+    # Constructor de la clase
+    # Añade atributos específicos de coches: matrícula, marca, año, tipo de combustible, kilómetros recorridos
+    def __init__(self, id, titulo, precio, vendedor, estado, stock, fecha_publicacion,
+                 matricula, marca, ano, combustible, kilometros_recorridos):
+        # Llamamos al constructor de la clase padre (Producto)
         super().__init__(id, titulo, precio, vendedor, estado, stock, fecha_publicacion)
-        self.matricula = matricula
-        self.marca = marca
-        self.kilometros_recorridos = kilometros_recorridos
-        self.ano = ano
-        self.combustible = combustible
+        # Atributos propios de ProductoCoche
+        self.matricula = matricula  # Matrícula del coche
+        self.marca = marca  # Marca del coche
+        self.ano = ano  # Año de fabricación
+        self.combustible = combustible  # Tipo de combustible: gasolina, diesel, eléctrico
+        self.kilometros_recorridos = kilometros_recorridos  # Km recorridos
 
+    # Metodo especial para mostrar información del producto al imprimirlo
     def __str__(self):
-        return f'{super().__str__()} Marca: {self.marca}, Año: {self.ano}, Km: {self.kilometros_recorridos}'
+        # Llamamos al __str__ de la clase padre y añadimos los atributos propios
+        return (f'{super().__str__()} Marca: {self.marca}, Año: {self.ano}, '
+                f'Km: {self.kilometros_recorridos}, Combustible: {self.combustible}')
