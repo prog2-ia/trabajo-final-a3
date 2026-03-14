@@ -32,3 +32,14 @@ class Carrito:
             total += producto.precio
         return total
 
+    # Sobrecarga de operadores
+    # Metodo especial para saber la cantidad de productos del carrito
+    def __len__(self):
+        return len(self.lista_productos)
+
+    # Metodo especial para añadir productos al carrito
+    def __add__(self, otro):
+        nuevo = Carrito(self.comprador)
+        nuevo.lista_productos = self.lista_productos + otro.lista_productos
+        return nuevo
+

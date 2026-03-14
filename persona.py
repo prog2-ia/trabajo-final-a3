@@ -9,12 +9,13 @@ class Persona:
 
     # Constructor de la clase.
     # Se ejecuta cuando se crea una nueva persona.
-    def __init__(self, dni, nombre, apellido, tarjeta_premium = None):
+    def __init__(self, dni, nombre, apellido, tarjeta_premium = None, importe = 0):
         self.dni = dni                # DNI de la persona
         self.nombre = nombre          # Nombre de la persona
         self.apellido = apellido      # Apellido de la persona
         # self.email = email          # Email
         self.tarjeta_premium = tarjeta_premium  # Tarjeta premium opcional
+        self.importe = importe        # Importe
 
 
     # Metodo especial que define cómo se muestra el objeto al imprimirlo
@@ -57,6 +58,19 @@ class Persona:
         # if self.importe < producto.precio:
         #     print('Importe insuficiente')
         #     return True
+
+        # Restar dinero al comprador
+        precio_total = producto.precio * cantidad
+
+        # Aplicamos descuento si tiene tarjeta premium
+        if self.tarjeta_premium:
+            precio_total = self.tarjeta_premium.aplicar_descuento(precio_total)
+
+        if self.importe < precio_total:
+            print('Importe insuficiente')
+            return False
+
+        self.importe -= precio_total
 
         # Reducimos el stock del producto según la cantidad comprada
         producto.reducir_stock(cantidad)

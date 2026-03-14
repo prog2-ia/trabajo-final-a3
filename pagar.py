@@ -19,4 +19,14 @@ class Pagar(Persona):
         # Representa el dinero disponible de la persona
         self.importe = importe
 
-
+    # Metodo para añadir saldo al usuario
+    def meter_saldo(self, cantidad):
+        # Comprobar que la cantidad sea valida
+        if cantidad <= 0:
+            print('Cantidad no válida. Debe ser mayor que 0.')
+            return False
+        else:
+            # Sumamos saldo
+            self.importe += cantidad
+            print(f'Saldo añadidio correctamente. Nuevo saldo: {self.importe}€')
+            return True

@@ -13,3 +13,16 @@ class PagarTarjeta(Pagar):
         # Nuevo atributo propio de PagarTarjeta
         # Representa el saldo disponible en la tarjeta
         self.saldo = saldo
+
+    # Sobreescribir comprar
+    def comprar(self, producto, cantidad):
+        total = producto.precio * cantidad
+
+        if self.saldo < total:
+            print('Saldo insuficiente en la tarjeta')
+            return False
+
+        if producto.reducir_stock(cantidad):
+            self.saldo -= total
+            print(f'{self.nombre} compró {producto.titulo} con tarjeta')
+            return True

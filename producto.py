@@ -1,7 +1,10 @@
 # producto.py
 
+# Importamos la clase Publicacion desde el archivo publicacion.py
+from publicacion import Publicacion
+
 # Definición de la clase Producto
-class Producto:
+class Producto(Publicacion):
 
     # Constructor de la clase.
     # Se ejecuta cuando se crea un nuevo producto.
@@ -13,6 +16,14 @@ class Producto:
         self._estado = estado                # Estado del producto (nuevo, usado, etc.)
         self._stock = stock                  # Cantidad disponible del producto
         self._fecha_publicacion = fecha_publicacion  # Fecha en la que se publicó
+
+    # Implementación del metodo abstracto
+    def mostrar_info(self):
+        return str(self)
+
+    # Implementación del metodo abstracto
+    def calcular_precio_final(self):
+        return self._precio
 
 
     # Metodo de clase que permite crear un producto a partir de un diccionario
@@ -75,6 +86,11 @@ class Producto:
     @property
     def id(self):
         return self._id
+
+    # Getter de fecha_publicación (solo lectura)
+    @property
+    def fecha_publicacion(self):
+        return self._fecha_publicacion
 
 
     # Metodo para validar si el precio es correcto

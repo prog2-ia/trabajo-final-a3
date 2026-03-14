@@ -1,10 +1,20 @@
 # market_place.py
 
+import random
+
 # Importamos las clases necesarias del proyecto
 from persona import Persona
 from tarjeta_premium import Tarjeta
 from producto import Producto
-import random
+from pagar import Pagar
+from pagar_tarjeta import PagarTarjeta
+from pagar_efectivo import PagarEfectivo
+from carrito import Carrito
+from conversacion import Conversacion
+from mensaje import Mensaje
+from producto_ropa import ProductoRopa
+from producto_coche import ProductoCoche
+from producto_electronico import ProductoElectronico
 
 
 #FUNCIONES PARA GENERAR DATOS ALEATORIOS
@@ -27,6 +37,7 @@ def validar_dni(dni):
 #     dni = str(numeros) + letra_aleatoria           # Unimos número y letra
 #
 #     return dni
+
 def generar_dni():
     letras = "TRWAGMYFPDXBNJZSQVHLCKE"
 
@@ -64,6 +75,9 @@ def generar_apellido():
 class Marketplace:
     def __init__(self):
         self.productos = []  # Lista donde se guardarán los productos publicados
+        self.usuarios = []
+        self.conversaciones = []
+        self.ofertas = []
 
 
 #PROGRAMA PRINCIPAL
@@ -74,9 +88,9 @@ if __name__ == '__main__':
     # Creamos el marketplace
     marketplace = Marketplace()
 
-    # Listas donde guardaremos las personas y tarjetas
-    personas = []
-    tarjetas = []
+    # # Listas donde guardaremos las personas y tarjetas
+    # personas = []
+    # tarjetas = []
 
     # Crear 10 personas con datos aleatorios
     # for i in range(10):
@@ -98,16 +112,13 @@ if __name__ == '__main__':
 
         # Validamos el DNI antes de crear la persona
         if validar_dni(dni):
-
             nombre = generar_nombre()
             apellido = generar_apellido()
-
             persona = Persona(dni, nombre, apellido)
-
-            personas.append(persona)
+            marketplace.usuarios.append(persona)
 
         else:
-            print("DNI no válido")
+            print('DNI no válido')
 
         # Diccionario con los datos de un producto
         datos_producto = {
@@ -125,37 +136,117 @@ if __name__ == '__main__':
 
     # MOSTRAR PERSONAS
 
-    # Recorremos la lista de personas y mostramos sus datos
-    for persona in personas:
-        print(persona)
+    if len(marketplace.usuarios) == 0:
+        print('No hay usuarios en el marketplace.')
+
+    else:
+        # Recorremos la lista de personas y mostramos sus datos
+        for persona in marketplace.usuarios:
+            print(' -', persona)
 
 
     # CREAR PRODUCTO
 
-    # Creamos manualmente un producto
-    cartera = Producto('11111', 'monedero', 7.99, 'Ruperta', 'Usado', 1, '20-01-2025')
+    if len(marketplace.usuarios) > 0:
+        # Creamos manualmente un producto
+        producto1 = Producto('P001', 'Cartera', 7.99, marketplace.usuarios[0],
+                         'Usado', 3, '20-01-2025')
+        marketplace.productos.append(producto1)
 
-    # Comprobamos si el precio es válido
-    cartera.validar_precio()
+        # Comprobamos si el precio es válido
+        producto1.validar_precio()
 
-    # Comprobamos si el producto tiene stock disponible
-    cartera.esta_disponible()
+        # Comprobamos si el producto tiene stock disponible
+        producto1.esta_disponible()
+    else:
+        print('No se puede crear productos: no hay usuarios.')
 
 
     #PUBLICAR PRODUCTO
-
-    # La primera persona publica un producto en el marketplace
-    personas[0].publicar_producto(datos_producto, marketplace)
+    if len(marketplace.usuarios) > 0:
+        # La primera persona publica un producto en el marketplace
+        marketplace.usuarios[0].publicar_producto(datos_producto, marketplace)
+    else:
+        print('No se puede publicar productos: no hay usuarios.')
 
 
     # COMPRA DE PRODUCTO
+    # Debe haber al menos dos usuarios
+    if len(marketplace.usuarios) >= 2:
+        # La segunda persona compra el producto
+        marketplace.usuarios[1].comprar(producto1, 1)
+        # Volvemos a comprobar el stock después de la compra
+        producto1.esta_disponible()
+    else:
+        print('No se puede comprar: no hay suficientes usuarios.')
 
-    # La segunda persona compra el producto
-    personas[1].comprar(cartera, 1)
+    # PUBLICAR PRODUCTOS ESPECIALIZADOS
 
+    if len(marketplace.usuarios) > 0:
+        # Producto ropa
+        producto_ropa = ProductoRopa(
+            'R001', 'Camiseta Oversize', 15.99, marketplace.usuarios[0],
+            'Nuevo', 10, '15-02-2025', talla = 'M', material = 'Algodón'
+        )
+        marketplace.productos.append(producto_ropa)
+        print('\nProducto de ropa creado:')
+        print( ' -', producto_ropa)
 
-    # Volvemos a comprobar el stock después de la compra
-    cartera.esta_disponible()
+        # Producto electrónico
+        producto_elec = ProductoElectronico(
+            'E001', 'Auriculares Bluetooth', 29.99, marketplace.usuarios[1],
+            'Seminuevo', 5, '10-02-2025', marca = 'Sony', modelo = 'WH-CH510', garantia = 2
+        )
+        marketplace.productos.append(producto_elec)
+        print('\nProducto electrónico creado:')
+        print(' -', producto_elec)
 
+        # Producto coche
+        producto_coche = ProductoCoche(
+            'C001', 'Seat Ibiza', 3500, marketplace.usuarios[2],
+            'Usado', 1, '01-01-2025', matricula = '1234ABC', marca = 'Seat',
+            ano = 2012, combustible = 'Gasolina', kilometros_recorridos = 145000
+        )
+        marketplace.productos.append(producto_coche)
+        print('\nProducto coche creado:')
+        print(' -', producto_coche)
 
+        # PROBAR COMPRA DE PRODUCTOS ESPECIALIZADOS
+        print('\nProbando compra de productos especializados:')
 
+        comprador = marketplace.usuarios[3]
+        comprador.importe = 5000  # Le damos dinero para probar
+
+        comprador.comprar(producto_ropa, 1)
+        comprador.comprar(producto_elec, 1)
+        comprador.comprar(producto_coche, 1)
+
+        # PROBAR CARRITP Y SOBRECARGA DE OPERADORES
+        print('\nProbando carrito y sobrecarga de operadores:')
+
+        carrito1 = Carrito(comprador)
+        carrito2 = Carrito(comprador)
+
+        carrito1.agregar_producto(producto_ropa)
+        carrito1.agregar_producto(producto_elec)
+
+        carrito2.agregar_producto(producto_coche)
+
+        carrito_total = carrito1 + carrito2
+
+        print(f'Carrito 1 tiene {len(carrito1)} productos.')
+        print(f'Carrito 2 tiene {len(carrito2)} productos.')
+        print(f'Carrito combinado tiene {len(carrito_total)} productos.')
+
+        # PROBAR DESCUENTO PREMIUM
+        tarjeta = Tarjeta('PREM123', '12/2030', descuento = 0.20)
+        comprador.tarjeta_premium = tarjeta
+
+        print('Tarjeta asignada:', tarjeta)
+
+        comprador.importe = 1000  # Le damos dinero otra vez
+
+        comprador.comprar(producto_elec, 1)
+
+    else:
+        print('No se pueden crear productos especializados: no hay usuarios.')
