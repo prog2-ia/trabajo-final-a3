@@ -30,14 +30,6 @@ def validar_dni(dni):
 
     return letra == letra_correcta
 
-# Genera un DNI aleatorio (8 números + 1 letra)
-# def generar_dni():
-#     letra_aleatoria = chr(random.randint(65, 90))  # Letra mayúscula aleatoria
-#     numeros = random.randint(11111111,99999999)    # Número de 8 cifras
-#     dni = str(numeros) + letra_aleatoria           # Unimos número y letra
-#
-#     return dni
-
 def generar_dni():
     letras = "TRWAGMYFPDXBNJZSQVHLCKE"
 
@@ -88,24 +80,6 @@ if __name__ == '__main__':
     # Creamos el marketplace
     marketplace = Marketplace()
 
-    # # Listas donde guardaremos las personas y tarjetas
-    # personas = []
-    # tarjetas = []
-
-    # Crear 10 personas con datos aleatorios
-    # for i in range(10):
-    #
-    #     # Generamos datos aleatorios
-    #     dni = generar_dni()
-    #     nombre = generar_nombre()
-    #     apellido = generar_apellido()
-    #
-    #     # Creamos el objeto Persona
-    #     persona = Persona(dni, nombre, apellido)
-    #
-    #     # Guardamos la persona en la lista
-    #     personas.append(persona)
-
     for i in range(10):
 
         dni = generar_dni()
@@ -129,10 +103,6 @@ if __name__ == '__main__':
             'stock': 1,
             'fecha_publicacion': '20-01-2025'
         }
-
-
-# añadir listasssssssssss
-
 
     # MOSTRAR PERSONAS
 
