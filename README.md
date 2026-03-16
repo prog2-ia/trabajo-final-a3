@@ -33,6 +33,7 @@ Incluye varios tipos de productos mediante **herencia**:
 - ProductoRopa
 - ProductoElectronico
 - ProductoCoche
+
 Todos heredan de la clase abstracta Publicacion.
 
 
@@ -41,6 +42,7 @@ Clases con herencia:
 - Pagar
 - PagarEfectivo
 - PagarTarjeta
+
 Incluye método para **añadir saldo**.
 
 
@@ -99,6 +101,7 @@ El archivo market_place.py genera:
 - Pruebas de carrito
 - Pruebas de descuento premium
 - Pruebas de mensajes
+
 Todo se muestra por consola.
 
 
@@ -116,6 +119,7 @@ Métodos sobrescritos como __str__, comprar, mostrar_info.
 Publicacion define métodos obligatorios.
 
 5. Modularidad
+
 Cada clase en su propio archivo.
 
 
