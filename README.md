@@ -18,7 +18,7 @@ El sistema permite gestionar usuarios, productos, compras, carritos, mensajes en
 	- Publicar productos
 	- Comprar productos
 	- Enviar mensajes
-	- Añadir saldo
+	- Añadir saldo.
 
 2. Carrito de compra
 - Añadir productos al carrito.
