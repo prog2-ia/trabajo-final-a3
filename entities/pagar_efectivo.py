@@ -1,7 +1,7 @@
 # pagar_efectivo.py
 
 # Importamos la clase Pagar
-from pagar import Pagar
+from entities.pagar import Pagar
 # Definimos la clase PagarEfectivo que hereda de Pagar
 class PagarEfectivo(Pagar):
     # Constructor de la clase

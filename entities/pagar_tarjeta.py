@@ -1,7 +1,7 @@
 # pagar_tarjeta.py
 
 # Importamos la clase Pagar
-from pagar import Pagar
+from entities.pagar import Pagar
 # Clase PagarTarjeta que hereda de Pagar
 class PagarTarjeta(Pagar):
     # Constructor de la clase

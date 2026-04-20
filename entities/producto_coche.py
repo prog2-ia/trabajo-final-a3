@@ -1,7 +1,7 @@
 # producto_coche.py
 
 # Importamos la clase base Producto
-from producto import Producto
+from entities.producto import Producto
 # Clase ProductoCoche que hereda de Producto
 class ProductoCoche(Producto):
     # Constructor de la clase

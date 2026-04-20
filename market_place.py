@@ -3,18 +3,13 @@
 import random
 
 # Importamos las clases necesarias del proyecto
-from persona import Persona
-from tarjeta_premium import Tarjeta
-from producto import Producto
-from pagar import Pagar
-from pagar_tarjeta import PagarTarjeta
-from pagar_efectivo import PagarEfectivo
-from carrito import Carrito
-from conversacion import Conversacion
-from mensaje import Mensaje
-from producto_ropa import ProductoRopa
-from producto_coche import ProductoCoche
-from producto_electronico import ProductoElectronico
+from entities.persona import Persona
+from entities.tarjeta_premium import Tarjeta
+from entities.producto import Producto
+from entities.carrito import Carrito
+from entities.producto_ropa import ProductoRopa
+from entities.producto_coche import ProductoCoche
+from entities.producto_electronico import ProductoElectronico
 
 
 #FUNCIONES PARA GENERAR DATOS ALEATORIOS
