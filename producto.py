@@ -30,13 +30,13 @@ class Producto(Publicacion):
     @classmethod
     def desde_diccionario(cls, datos, vendedor):
         return cls(
-            datos['id'],                # ID del producto
-            datos['titulo'],            # Título del producto
-            datos['precio'],            # Precio
-            vendedor,                   # Persona que lo vende
-            datos['estado'],            # Estado del producto
-            datos['stock'],             # Stock disponible
-            datos['fecha_publicacion']  # Fecha de publicación
+            datos['id'],
+            datos['titulo'],
+            datos['precio'],
+            vendedor,
+            datos['estado'],
+            datos['stock'],
+            datos['fecha_publicacion']
         )
 
 

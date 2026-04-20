@@ -10,12 +10,12 @@ class Persona:
     # Constructor de la clase.
     # Se ejecuta cuando se crea una nueva persona.
     def __init__(self, dni, nombre, apellido, tarjeta_premium = None, importe = 0):
-        self.dni = dni                # DNI de la persona
-        self.nombre = nombre          # Nombre de la persona
-        self.apellido = apellido      # Apellido de la persona
-        # self.email = email          # Email
-        self.tarjeta_premium = tarjeta_premium  # Tarjeta premium opcional
-        self.importe = importe        # Importe
+        self.dni = dni
+        self.nombre = nombre
+        self.apellido = apellido
+        # self.email = email
+        self.tarjeta_premium = tarjeta_premium
+        self.importe = importe
 
 
     # Metodo especial que define cómo se muestra el objeto al imprimirlo
