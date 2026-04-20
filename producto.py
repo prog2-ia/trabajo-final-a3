@@ -9,13 +9,13 @@ class Producto(Publicacion):
     # Constructor de la clase.
     # Se ejecuta cuando se crea un nuevo producto.
     def __init__(self, id, titulo, precio, vendedor, estado, stock, fecha_publicacion):
-        self._id = id                        # Identificador único del producto
-        self._titulo = titulo                # Título o nombre del producto
-        self._precio = precio                # Precio del producto
-        self._vendedor = vendedor            # Persona que vende el producto
-        self._estado = estado                # Estado del producto (nuevo, usado, etc.)
-        self._stock = stock                  # Cantidad disponible del producto
-        self._fecha_publicacion = fecha_publicacion  # Fecha en la que se publicó
+        self._id = id
+        self._titulo = titulo
+        self._precio = precio
+        self._vendedor = vendedor
+        self._estado = estado
+        self._stock = stock
+        self._fecha_publicacion = fecha_publicacion
 
     # Implementación del metodo abstracto
     def mostrar_info(self):
