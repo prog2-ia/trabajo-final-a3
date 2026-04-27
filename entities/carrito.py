@@ -17,12 +17,14 @@ class Carrito:
     def agregar_producto(self, producto):
         # Añadimos un producto a la lista
         self.lista_productos.append(producto)
-        print(f'Producto {producto.titulo} agregado al carrito')
+        #f'Producto {producto.titulo} agregado al carrito'
+        return True
 
     # Metodo para eliminar todos los productos del carrito
     def eliminar_productos(self):
         self.lista_productos.clear()
-        print('Carrito vaciado')
+        #print('Carrito vaciado')
+        return True
 
     # Metodo para calcular el total del carrito
     def calcular_total(self):
@@ -40,6 +42,6 @@ class Carrito:
     # Metodo especial para añadir productos al carrito
     def __add__(self, otro):
         nuevo = Carrito(self.comprador)
-        nuevo.lista_productos = self.lista_productos + otro.lista_productos
+        nuevo.lista_productos = self.lista_productos[:] + otro.lista_productos[:]
         return nuevo
 

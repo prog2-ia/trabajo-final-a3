@@ -11,11 +11,11 @@ class ProductoCoche(Producto):
         # Llamamos al constructor de la clase padre (Producto)
         super().__init__(id, titulo, precio, vendedor, estado, stock, fecha_publicacion)
         # Atributos propios de ProductoCoche
-        self.matricula = matricula  # Matrícula del coche
-        self.marca = marca  # Marca del coche
-        self.ano = ano  # Año de fabricación
-        self.combustible = combustible  # Tipo de combustible: gasolina, diesel, eléctrico
-        self.kilometros_recorridos = kilometros_recorridos  # Km recorridos
+        self.matricula = matricula
+        self.marca = marca
+        self.ano = ano
+        self.combustible = combustible
+        self.kilometros_recorridos = kilometros_recorridos
 
     # Metodo especial para mostrar información del producto al imprimirlo
     def __str__(self):

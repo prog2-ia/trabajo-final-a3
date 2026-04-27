@@ -42,8 +42,7 @@ class Producto(Publicacion):
 
     # Metodo especial que define cómo se muestra el producto al imprimirlo
     def __str__(self):
-        cadena = f'Producto: {self.titulo} | Precio: {self.precio} € | Stock: {self.stock}'
-        return cadena
+        return f'Producto: {self.titulo} | Precio: {self.precio} € | Stock: {self.stock}'
 
 
     # Getter del precio (permite acceder a precio como producto.precio)
@@ -55,9 +54,7 @@ class Producto(Publicacion):
     # Setter del precio (permite modificarlo con validación)
     @precio.setter
     def precio(self, valor):
-        if valor <= 0:                   # Validación: el precio no puede ser negativo o 0
-            print("Precio no válido")
-        else:
+        if valor > 0:                   # Validación: el precio no puede ser negativo o 0
             self._precio = valor
 
 
@@ -70,9 +67,7 @@ class Producto(Publicacion):
     # Setter del stock con validación
     @stock.setter
     def stock(self, valor):
-        if valor < 0:                    # El stock no puede ser negativo
-            print("Stock no válido")
-        else:
+        if valor >= 0:
             self._stock = valor
 
 
@@ -95,22 +90,11 @@ class Producto(Publicacion):
 
     # Metodo para validar si el precio es correcto
     def validar_precio(self):
-        if self.precio <= 0:
-            print('Precio no valido')
-            return False
-        else:
-            print('Precio valido')
-            return True
-
+        return self.precio > 0
 
     # Metodo para comprobar si el producto tiene stock disponible
     def esta_disponible(self):
-        if self.stock == 0:
-            print('No hay stock disponible')
-            return False
-        else:
-            print(f'Stock disponible: {self.stock} unidades de {self.titulo}')
-            return True
+        return self.stock > 0
 
 
     # Metodo para reducir el stock cuando alguien compra el producto
@@ -118,16 +102,16 @@ class Producto(Publicacion):
 
         # Validamos que la cantidad sea mayor que 0
         if cantidad <= 0:
-            print('Cantidad no válida')
+           # print('Cantidad no válida')
             return False
 
         # Comprobamos si hay suficiente stock
-        elif self.stock < cantidad:
-            print('No hay suficiente stock disponible')
+        if self.stock < cantidad:
+           # print('No hay suficiente stock disponible')
             return False
 
         #  si esta correcto, reducimos el stock
-        else:
-            print('Cantidad reducida')
-            self.stock -= cantidad
-            return True
+
+           # print('Cantidad reducida')
+        self.stock -= cantidad
+        return True
