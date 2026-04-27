@@ -22,13 +22,12 @@ class Persona:
     def __str__(self):
 
         # Creamos una cadena con los datos básicos
-        cadena = f'Nombre y Apellido: {self.nombre} {self.apellido} -DNI: {self.dni}'
+        cadena = f'{self.nombre} {self.apellido} -DNI: {self.dni}'
 
         # Si la persona tiene tarjeta premium, se añade a la cadena
         if self.tarjeta_premium:
             cadena += f' -Tarjeta: {self.tarjeta_premium}'
 
-        # Devolvemos la cadena final
         return cadena
 
 
@@ -42,8 +41,9 @@ class Persona:
         # Se añade el producto a la lista de productos del marketplace
         marketplace.productos.append(producto)
 
+        return producto
         # Mensaje informativo
-        print(f'{self.nombre} {self.apellido} publicó el producto: {producto.titulo} a {producto.precio}€, el día {producto.fecha_publicacion}')
+        # print(f'{self.nombre} {self.apellido} publicó el producto: {producto.titulo} a {producto.precio}€, el día {producto.fecha_publicacion}')
 
 
     # Metodo para comprar un producto
@@ -51,13 +51,7 @@ class Persona:
 
         # Comprobamos si el producto está disponible
         if not producto.esta_disponible():
-            print('Producto no disponible')
-            return False
-
-        # Comprobación de dinero disponible
-        # if self.importe < producto.precio:
-        #     print('Importe insuficiente')
-        #     return True
+            return {'ok': False, 'motivo': 'Producto no disponible'}
 
         # Restar dinero al comprador
         precio_total = producto.precio * cantidad
@@ -67,16 +61,18 @@ class Persona:
             precio_total = self.tarjeta_premium.aplicar_descuento(precio_total)
 
         if self.importe < precio_total:
-            print('Importe insuficiente')
-            return False
+            return {'ok': False, 'motivo': 'Importe insuficiente'}
 
+        # Actualizar saldo y stock
         self.importe -= precio_total
-
-        # Reducimos el stock del producto según la cantidad comprada
         producto.reducir_stock(cantidad)
 
-        # Mensaje de confirmación de compra
-        print(f' {self.nombre} compró {producto.titulo}')
+        return {
+            'ok': True,
+            'producto': producto.titulo,
+            'cantidad': cantidad,
+            'precio_pagado': precio_total
+        }
 
 
     # Metodo para enviar un mensaje dentro de una conversación
@@ -85,3 +81,8 @@ class Persona:
         # Se añade el mensaje a la conversación indicando quién lo envía
         conversacion.agregar_mensaje(self, texto)
 
+    def meter_saldo(self, cantidad):
+        if cantidad <= 0:
+            return False
+        self.importe += cantidad
+        return True

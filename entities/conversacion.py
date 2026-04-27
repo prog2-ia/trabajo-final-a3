@@ -15,3 +15,12 @@ class Conversacion:
     def agregar_mensaje(self, autor, texto):
         mensaje = Mensaje(autor, texto)
         self.mensajes.append(mensaje)
+        # Añadir excepciones
+
+        # Devolver historial de mensajes
+    def obtener_historial(self):
+        return self.mensajes[:]
+
+    # Representación opcional de la conversación
+    def __str__(self):
+        return f'Conversación entre {self.usuarios[0].nombre} y {self.usuarios[1].nombre}'
