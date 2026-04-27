@@ -1,13 +1,14 @@
 # tarjeta_premium.py
-# Clase que representa una tarjeta premium de un usuario
-class Tarjeta:
+## Clase que representa una tarjeta premium de un usuario
+class TarjetaPremium:
     # Constructor de la clase
     # codigo: identificador de la tarjeta
     # fecha_caducidad: fecha de caducidad de la tarjeta
     def __init__(self, codigo, fecha_caducidad, descuento = 0.10):
         self.codigo = codigo
         self.fecha_caducidad = fecha_caducidad
-        self.descuento = descuento # 10% por defecto
+        self.descuento = descuento
+        #excepciones (añadir en este apartado)
 
     # Metodo especial para mostrar la información de la tarjeta al imprimirla
     def __str__(self):
