@@ -24,3 +24,4 @@ class Conversacion:
     # Representación opcional de la conversación
     def __str__(self):
         return f'Conversación entre {self.usuarios[0].nombre} y {self.usuarios[1].nombre}'
+#

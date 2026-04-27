@@ -18,3 +18,4 @@ class ProductoElectronico(Producto):
     def __str__(self):
         # Llamamos al __str__ de la clase padre y añadimos los atributos específicos
         return f'{super().__str__()} Marca: {self.marca}, Modelo: {self.modelo}, Garantía: {self.garantia} años'
+#

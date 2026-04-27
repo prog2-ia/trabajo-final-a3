@@ -12,3 +12,4 @@ class EstadoProducto:
 
     def __str__(self):
         return f'Estado: {self.estado}'
+#
