@@ -1,7 +1,7 @@
 # mesaje.py
 from datetime import datetime
 
-# Clase mensaje
+## Clase mensaje
 class Mensaje:
     # Constructor de la clase
     # Se ejecuta cuando se crea un mensaje

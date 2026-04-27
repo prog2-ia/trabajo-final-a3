@@ -1,5 +1,5 @@
 # tarjeta_premium.py
-# Clase que representa una tarjeta premium de un usuario
+## Clase que representa una tarjeta premium de un usuario
 class TarjetaPremium:
     # Constructor de la clase
     # codigo: identificador de la tarjeta

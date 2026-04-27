@@ -1,6 +1,6 @@
 # carrito.py
 
-# Clase Carrito que representa la lista de compras de un comprador
+## Clase Carrito que representa la lista de compras de un comprador
 class Carrito:
     # Constructor de la clase
     # comprador: objeto Persona o Pagar

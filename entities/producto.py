@@ -88,7 +88,7 @@ class Producto(Publicacion):
         return self._fecha_publicacion
 
 
-    # Metodo para validar si el precio es correcto
+    ## Metodo para validar si el precio es correcto
     def validar_precio(self):
         return self.precio > 0
 
