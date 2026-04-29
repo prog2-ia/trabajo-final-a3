@@ -1,15 +1,16 @@
 # persona.py
 
 # Importamos la clase Producto desde el archivo producto.py
-from producto import Producto
-
+from entities.producto import Producto
+from entities.conversacion import Conversacion
+from entities.tarjeta_premium import TarjetaPremium
 
 # Definición de la clase Persona
 class Persona:
 
     # Constructor de la clase.
     # Se ejecuta cuando se crea una nueva persona.
-    def __init__(self, dni, nombre, apellido, tarjeta_premium = None, importe = 0):
+    def __init__(self, dni: str, nombre: str, apellido: str, tarjeta_premium: 'TarjetaPremium' = None, importe: float = 0.0) -> None:
         self.dni = dni
         self.nombre = nombre
         self.apellido = apellido
@@ -19,7 +20,7 @@ class Persona:
 
 
     # Metodo especial que define cómo se muestra el objeto al imprimirlo
-    def __str__(self):
+    def __str__(self) -> str:
 
         # Creamos una cadena con los datos básicos
         cadena = f'{self.nombre} {self.apellido} -DNI: {self.dni}'
@@ -32,7 +33,7 @@ class Persona:
 
 
     # Metodo para que una persona publique un producto en el marketplace
-    def publicar_producto(self, datos_producto, marketplace):
+    def publicar_producto(self, datos_producto: dict, marketplace: object) -> Producto:
 
         # Se crea un objeto Producto a partir de un diccionario de datos
         # y se asocia a esta persona como vendedor
@@ -47,7 +48,7 @@ class Persona:
 
 
     # Metodo para comprar un producto
-    def comprar(self, producto, cantidad):
+    def comprar(self, producto: Producto, cantidad: int) -> dict:
 
         # Comprobamos si el producto está disponible
         if not producto.esta_disponible():
@@ -76,14 +77,13 @@ class Persona:
 
 
     # Metodo para enviar un mensaje dentro de una conversación
-    def enviar_mensaje(self, conversacion, texto):
+    def enviar_mensaje(self, conversacion: Conversacion, texto: str) -> bool:
 
         # Se añade el mensaje a la conversación indicando quién lo envía
         conversacion.agregar_mensaje(self, texto)
 
-    def meter_saldo(self, cantidad):
+    def meter_saldo(self, cantidad: float) -> bool:
         if cantidad <= 0:
             return False
         self.importe += cantidad
         return True
-#
