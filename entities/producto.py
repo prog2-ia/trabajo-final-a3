@@ -8,7 +8,7 @@ class Producto(Publicacion):
 
     # Constructor de la clase.
     # Se ejecuta cuando se crea un nuevo producto.
-    def __init__(self, id, titulo, precio, vendedor, estado, stock, fecha_publicacion):
+    def __init__(self, id: str, titulo: str, precio: float, vendedor: object, estado: str, stock: int, fecha_publicacion: str) -> None:
         self._id = id
         self._titulo = titulo
         self._precio = precio
@@ -18,17 +18,17 @@ class Producto(Publicacion):
         self._fecha_publicacion = fecha_publicacion
 
     # Implementación del metodo abstracto
-    def mostrar_info(self):
+    def mostrar_info(self) -> str:
         return str(self)
 
     # Implementación del metodo abstracto
-    def calcular_precio_final(self):
+    def calcular_precio_final(self) -> float:
         return self._precio
 
 
     # Metodo de clase que permite crear un producto a partir de un diccionario
     @classmethod
-    def desde_diccionario(cls, datos, vendedor):
+    def desde_diccionario(cls, datos: dict, vendedor: object) -> 'Producto':
         return cls(
             datos['id'],
             datos['titulo'],
@@ -41,13 +41,13 @@ class Producto(Publicacion):
 
 
     # Metodo especial que define cómo se muestra el producto al imprimirlo
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Producto: {self.titulo} | Precio: {self.precio} € | Stock: {self.stock}'
 
 
     # Getter del precio (permite acceder a precio como producto.precio)
     @property
-    def precio(self):
+    def precio(self) -> float:
         return self._precio
 
 
@@ -60,45 +60,45 @@ class Producto(Publicacion):
 
     # Getter del stock
     @property
-    def stock(self):
+    def stock(self) -> int:
         return self._stock
 
 
     # Setter del stock con validación
     @stock.setter
-    def stock(self, valor):
+    def stock(self, valor: int) -> None:
         if valor >= 0:
             self._stock = valor
 
 
     # Getter del título (solo lectura)
     @property
-    def titulo(self):
+    def titulo(self) -> str:
         return self._titulo
 
 
     # Getter del id (solo lectura)
     @property
-    def id(self):
+    def id(self) -> str:
         return self._id
 
     # Getter de fecha_publicación (solo lectura)
     @property
-    def fecha_publicacion(self):
+    def fecha_publicacion(self) -> str:
         return self._fecha_publicacion
 
 
     ## Metodo para validar si el precio es correcto
-    def validar_precio(self):
+    def validar_precio(self) -> bool:
         return self.precio > 0
 
     # Metodo para comprobar si el producto tiene stock disponible
-    def esta_disponible(self):
+    def esta_disponible(self) -> bool:
         return self.stock > 0
 
 
     # Metodo para reducir el stock cuando alguien compra el producto
-    def reducir_stock(self, cantidad):
+    def reducir_stock(self, cantidad: int) -> bool:
 
         # Validamos que la cantidad sea mayor que 0
         if cantidad <= 0:
