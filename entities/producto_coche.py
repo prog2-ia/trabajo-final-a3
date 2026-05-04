@@ -36,5 +36,5 @@ class ProductoCoche(Producto):
     # Metodo especial para mostrar información del producto al imprimirlo
     def __str__(self) -> str:
         # Llamamos al __str__ de la clase padre y añadimos los atributos propios
-        return (f'{super().__str__()} Marca: {self.marca}, Año: {self.ano}, '
-                f'Km: {self.kilometros_recorridos}, Combustible: {self.combustible}')
+        return (f'{super().__str__()} | Marca: {self.marca} | Año: {self.ano} | '
+                f'Km: {self.kilometros_recorridos} | Combustible: {self.combustible}')

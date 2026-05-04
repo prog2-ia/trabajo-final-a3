@@ -9,6 +9,16 @@ class Conversacion:
     # Constructor de la clase
     # Se ejecuta cuando se crea una conversacion
     def __init__(self, usuario1: object, usuario2: object) -> None:
+
+        if usuario1 is None or usuario2 is None:
+            raise ValueError('Debe haber dos usuarios para mantener una conversación.')
+
+        if usuario1 == usuario2:
+            raise ValueError('No te puedes enviar un mensaje a ti mismo.')
+
+        if not hasattr(usuario1, 'nombre') or not hasattr(usuario2, 'nombre'):
+            raise TypeError('Los usuarios deben ser objetos válidos con atributo nombre.')
+
         self.usuarios = (usuario1, usuario2)
         self.mensajes: list[Mensaje] = []
 
@@ -16,7 +26,13 @@ class Conversacion:
     def agregar_mensaje(self, autor: object, texto: str) -> bool:
 
         if autor not in self.usuarios:
-            raise UsuarioNoAutorizadoError('Este usuario no pertenece a la conversación.')
+            raise UsuarioNoAutorizadoError('El autor no pertenece a esta conversación.')
+
+        if hasattr(autor, 'nombre'):
+            raise TypeError('El autor debe ser un objeto válido con atributo nombre.')
+
+        if not texto or texto.strip() == '':
+            raise ValueError('El texto no puede estar vacío.')
 
         mensaje = Mensaje(autor, texto)
         self.mensajes.append(mensaje)

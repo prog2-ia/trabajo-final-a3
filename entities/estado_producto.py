@@ -8,7 +8,7 @@ class EstadoProducto:
     def __init__(self, estado: str) -> None:
         if estado not in (self.NUEVO, self.SEMINUEVO, self.USADO):
             raise ValueError(f'{estado} no válido. Debe ser: '
-                            f'{self.NUEVO}, {self.SEMINUEVO}, {self.USADO}')
+                             f'{self.NUEVO}, {self.SEMINUEVO}, {self.USADO}')
 
         self.estado = estado
 

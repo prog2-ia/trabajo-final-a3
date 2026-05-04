@@ -9,6 +9,10 @@ class Carrito:
     # comprador: objeto Persona o Pagar
     # lista_productos: lista de objetos Producto
     def __init__(self, comprador: Persona, lista_productos: list[Producto] = None) -> None:
+
+        if not isinstance(comprador, Persona):
+            raise TypeError('El comprador debe ser un objeto de tipo Persona.')
+
         self.comprador = comprador
         # Inicializamos la lista de productos como lista vacía si no se pasa nada
         if lista_productos is None:
@@ -47,6 +51,9 @@ class Carrito:
     def __add__(self, otro: 'Carrito') -> 'Carrito':
         if not isinstance(otro, Carrito):
             raise TypeError('Solo se pueden sumar dos carritos.')
+
+        if self.comprador != otro.comprador:
+            raise ValueError('No se pueden sumar carritos de compradores distintos.')
 
         nuevo = Carrito(self.comprador)
         nuevo.lista_productos = self.lista_productos[:] + otro.lista_productos[:]

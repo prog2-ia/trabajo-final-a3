@@ -11,11 +11,26 @@ class Producto(Publicacion):
     # Se ejecuta cuando se crea un nuevo producto.
     def __init__(self, id: str, titulo: str, precio: float, vendedor: object, estado: str, stock: int, fecha_publicacion: str) -> None:
 
+        if not id or id.strip() == '':
+            raise ValueError('El id no puede estar vacío.')
+
+        if not titulo or titulo.strip() == '':
+            raise ValueError('El título no puede estar vacío.')
+
         if precio <= 0:
             raise PrecioInvalidoError('El precio no puede ser negativo.')
 
-        if stock <= 0:
+        if vendedor is None:
+            raise ValueError('El vendedor no puede ser None.')
+
+        if not estado or estado.strip() == '':
+            raise ValueError('El estado no puede estar vacío.')
+
+        if stock < 0:
             raise ValueError('El stock no puede ser negativo.')
+
+        if not fecha_publicacion or fecha_publicacion.strip() == '':
+            raise   ValueError('La fecha de publicación no puede estar vacía.')
 
         self._id = id
         self._titulo = titulo
@@ -37,6 +52,15 @@ class Producto(Publicacion):
     # Metodo de clase que permite crear un producto a partir de un diccionario
     @classmethod
     def desde_diccionario(cls, datos: dict, vendedor: object) -> 'Producto':
+
+        if not isinstance(datos, dict):
+            raise TypeError('Los datos del producto deben estar en un diccionario.')
+
+        claves = ['id', 'titulo', 'precio', 'estado', 'stock', 'fecha_publicacion']
+        for clave in claves:
+            if clave not in datos:
+                raise KeyError(f'Falta la clave: {clave} en los datos del producto.')
+
         return cls(
             datos['id'],
             datos['titulo'],
@@ -61,9 +85,10 @@ class Producto(Publicacion):
 
     # Setter del precio (permite modificarlo con validación)
     @precio.setter
-    def precio(self, valor):
-        if valor > 0:                   # Validación: el precio no puede ser negativo o 0
-            self._precio = valor
+    def precio(self, valor: float) -> None:
+        if valor <= 0:
+            raise PrecioInvalidoError('La precio no puede ser negativo.')
+        self._precio = valor
 
 
     # Getter del stock
@@ -75,8 +100,9 @@ class Producto(Publicacion):
     # Setter del stock con validación
     @stock.setter
     def stock(self, valor: int) -> None:
-        if valor >= 0:
-            self._stock = valor
+        if valor < 0:
+            raise ValueError('La stock no puede ser negativo.')
+        self._stock = valor
 
 
     # Getter del título (solo lectura)
