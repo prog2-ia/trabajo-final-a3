@@ -10,6 +10,22 @@ class ProductoCoche(Producto):
                  matricula: str, marca: str, ano: int, combustible: str, kilometros_recorridos: int) -> None:
         # Llamamos al constructor de la clase padre (Producto)
         super().__init__(id, titulo, precio, vendedor, estado, stock, fecha_publicacion)
+
+        if not matricula or matricula.strip() == '':
+            raise ValueError('La matrícula no puede estar vacía.')
+
+        if not marca or marca.strip() == '':
+            raise ValueError('La marca no puede estar vacía.')
+
+        if ano <= 0:
+            raise ValueError('El año debe ser un número positivo.')
+
+        if not combustible or combustible.strip() == '':
+            raise ValueError('El tipo de combustible no puede estar vacío.')
+
+        if kilometros_recorridos < 0:
+            raise ValueError('Los kilómetros recorridos no pueden ser negativos.')
+
         # Atributos propios de ProductoCoche
         self.matricula = matricula
         self.marca = marca

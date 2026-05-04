@@ -1,7 +1,8 @@
 # producto.py
 
 # Importamos la clase Publicacion desde el archivo publicacion.py
-from publicacion import Publicacion
+from entities.publicacion import Publicacion
+from entities.excepciones import StockError, PrecioInvalidoError
 
 # Definición de la clase Producto
 class Producto(Publicacion):
@@ -9,6 +10,13 @@ class Producto(Publicacion):
     # Constructor de la clase.
     # Se ejecuta cuando se crea un nuevo producto.
     def __init__(self, id: str, titulo: str, precio: float, vendedor: object, estado: str, stock: int, fecha_publicacion: str) -> None:
+
+        if precio <= 0:
+            raise PrecioInvalidoError('El precio no puede ser negativo.')
+
+        if stock <= 0:
+            raise ValueError('El stock no puede ser negativo.')
+
         self._id = id
         self._titulo = titulo
         self._precio = precio
@@ -102,16 +110,11 @@ class Producto(Publicacion):
 
         # Validamos que la cantidad sea mayor que 0
         if cantidad <= 0:
-           # print('Cantidad no válida')
-            return False
+           raise ValueError('La cantidad no puede ser negativa.')
 
         # Comprobamos si hay suficiente stock
         if self.stock < cantidad:
-           # print('No hay suficiente stock disponible')
-            return False
+           raise StockError('No hay suficiente stock disponible.')
 
-        #  si esta correcto, reducimos el stock
-
-           # print('Cantidad reducida')
         self.stock -= cantidad
         return True

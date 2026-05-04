@@ -1,5 +1,8 @@
 # carrito.py
 
+from entities.producto import Producto
+from entities.persona import Persona
+
 # Clase Carrito que representa la lista de compras de un comprador
 class Carrito:
     # Constructor de la clase
@@ -15,20 +18,21 @@ class Carrito:
     # Metodo para agregar un producto al carrito
 
     def agregar_producto(self, producto: Producto) -> bool:
+        if not isinstance(producto, Producto):
+            raise TypeError('Solo se pueden añadir objetos de tipo Producto al carrito.')
+
         # Añadimos un producto a la lista
         self.lista_productos.append(producto)
-        #f'Producto {producto.titulo} agregado al carrito'
         return True
 
     # Metodo para eliminar todos los productos del carrito
     def eliminar_productos(self) -> bool:
         self.lista_productos.clear()
-        #print('Carrito vaciado')
         return True
 
     # Metodo para calcular el total del carrito
     def calcular_total(self) -> float:
-        total = 0
+        total = 0.0
         # Sumamos el precio de todos los productos en la lista
         for producto in self.lista_productos:
             total += producto.precio
@@ -41,6 +45,9 @@ class Carrito:
 
     # Metodo especial para añadir productos al carrito
     def __add__(self, otro: 'Carrito') -> 'Carrito':
+        if not isinstance(otro, Carrito):
+            raise TypeError('Solo se pueden sumar dos carritos.')
+
         nuevo = Carrito(self.comprador)
         nuevo.lista_productos = self.lista_productos[:] + otro.lista_productos[:]
         return nuevo

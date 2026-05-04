@@ -1,7 +1,8 @@
 # conversacion.py
 
 # Importamos la clase Mensaje desde el archivo mensaje.py
-from mensaje import Mensaje
+from entities.mensaje import Mensaje
+from entities.excepciones import UsuarioNoAutorizadoError
 
 # Clase Conversacion
 class Conversacion:
@@ -13,9 +14,13 @@ class Conversacion:
 
     # Metodo para añadir mensajes
     def agregar_mensaje(self, autor: object, texto: str) -> bool:
+
+        if autor not in self.usuarios:
+            raise UsuarioNoAutorizadoError('Este usuario no pertenece a la conversación.')
+
         mensaje = Mensaje(autor, texto)
         self.mensajes.append(mensaje)
-        # Añadir excepciones
+        return True
 
         # Devolver historial de mensajes
     def obtener_historial(self) -> list[Mensaje]:
