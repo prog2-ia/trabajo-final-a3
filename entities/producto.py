@@ -144,3 +144,13 @@ class Producto(Publicacion):
 
         self.stock -= cantidad
         return True
+
+    def es_del_vendedor(self, persona: object) -> bool:
+        return self._vendedor == persona
+
+    def aumentar_stock(self, cantidad: int) -> bool:
+        if cantidad <= 0:
+            raise ValueError('La cantidad no puede ser negativa.')
+        self.stock += cantidad
+        return True
+

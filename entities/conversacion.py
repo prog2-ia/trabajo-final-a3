@@ -42,6 +42,16 @@ class Conversacion:
     def obtener_historial(self) -> list[Mensaje]:
         return self.mensajes[:]
 
+    def ultimo_mensaje(self) -> Mensaje | None:
+        if self.mensajes:
+            return self.mensajes[-1]
+        else:
+            return None
+
+    def cantidad_mensajes(self) -> int:
+        return len(self.mensajes)
+
     # Representación opcional de la conversación
     def __str__(self) -> str:
         return f'Conversación entre {self.usuarios[0].nombre} y {self.usuarios[1].nombre}'
+

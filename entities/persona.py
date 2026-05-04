@@ -110,3 +110,12 @@ class Persona:
             raise ValueError('El cantidad no puede ser negativa.')
         self.importe += cantidad
         return True
+
+    def ver_saldo(self) -> float:
+        return self.importe
+
+    def tiene_tarjeta_premium(self) -> bool:
+        return self.tarjeta_premium is not None
+
+
+
