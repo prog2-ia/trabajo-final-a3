@@ -5,10 +5,13 @@ class TarjetaPremium:
     # codigo: identificador de la tarjeta
     # fecha_caducidad: fecha de caducidad de la tarjeta
     def __init__(self, codigo: str, fecha_caducidad: str, descuento: float = 0.10) -> None:
+
+        if descuento < 0 or descuento > 1:
+            raise ValueError('El descuento debe estar entre 0 y 1.')
         self.codigo = codigo
         self.fecha_caducidad = fecha_caducidad
         self.descuento = descuento
-        #excepciones (añadir en este apartado)
+
 
     # Metodo especial para mostrar la información de la tarjeta al imprimirla
     def __str__(self) -> str:

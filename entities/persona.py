@@ -4,6 +4,7 @@
 from entities.producto import Producto
 from entities.conversacion import Conversacion
 from entities.tarjeta_premium import TarjetaPremium
+from entities.excepciones import SaldoInsuficienteError
 
 # Definición de la clase Persona
 class Persona:
@@ -52,7 +53,7 @@ class Persona:
 
         # Comprobamos si el producto está disponible
         if not producto.esta_disponible():
-            return {'ok': False, 'motivo': 'Producto no disponible'}
+            raise Exception('Producto no disponible.')
 
         # Restar dinero al comprador
         precio_total = producto.precio * cantidad
@@ -62,7 +63,7 @@ class Persona:
             precio_total = self.tarjeta_premium.aplicar_descuento(precio_total)
 
         if self.importe < precio_total:
-            return {'ok': False, 'motivo': 'Importe insuficiente'}
+            raise SaldoInsuficienteError('No tienes saldo suficiente.')
 
         # Actualizar saldo y stock
         self.importe -= precio_total

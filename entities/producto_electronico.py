@@ -9,6 +9,16 @@ class ProductoElectronico(Producto):
     def __init__(self, id: str, titulo: str, precio: float, vendedor: object, estado: str, stock: int, fecha_publicacion: str, marca: str, modelo: str, garantia: int) -> None:
         # Llamamos al constructor de la clase padre para inicializar los atributos heredados
         super().__init__(id, titulo, precio, vendedor, estado, stock, fecha_publicacion)
+
+        if not marca or marca.strip() == '':
+            raise ValueError('La marca no puede estar vacía.')
+
+        if not modelo or modelo.strip() == '':
+            raise ValueError('El modelo no puede estar vacío.')
+
+        if garantia < 0:
+            raise ValueError('La garantía no puede ser negativa.')
+
         # Atributos propios de ProductoElectronico
         self.marca = marca
         self.modelo = modelo
