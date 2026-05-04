@@ -26,3 +26,6 @@ class TarjetaPremium:
 
     def aplicar_descuento(self, precio: float) -> float:
         return round(precio * (1 - self.descuento), 2)
+
+    def esta_caducada(self, fecha_actual:str) -> bool:
+        return fecha_actual > self.fecha_caducidad

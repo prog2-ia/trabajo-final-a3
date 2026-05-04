@@ -59,3 +59,12 @@ class Carrito:
         nuevo.lista_productos = self.lista_productos[:] + otro.lista_productos[:]
         return nuevo
 
+    def eliminar_producto(self, producto: Producto) -> bool:
+        if producto in self.lista_productos:
+            self.lista_productos.remove(producto)
+            return True
+
+        raise ValueError('No se puede eliminar el producto porque no está en el carrito.')
+
+    def contar_producto(self, producto: Producto) -> int:
+        return self.lista_productos.count(producto)
