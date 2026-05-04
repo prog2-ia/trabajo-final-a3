@@ -9,6 +9,9 @@ class Mensaje:
         if autor is None:
             raise TypeError('Debe haber un autor para enviar un mensaje.')
 
+        if not hasattr(autor, 'nombre'):
+            raise TypeError('El autor debe ser un objeto válido con atributo nombre.')
+
         if not texto or texto.strip() == '':
             raise ValueError('Debe haber un texto para enviar un mensaje.')
 

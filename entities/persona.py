@@ -12,6 +12,19 @@ class Persona:
     # Constructor de la clase.
     # Se ejecuta cuando se crea una nueva persona.
     def __init__(self, dni: str, nombre: str, apellido: str, tarjeta_premium: 'TarjetaPremium' = None, importe: float = 0.0) -> None:
+
+        if not dni or dni.strip() == '':
+            raise ValueError('El DNI no puede estar vacío.')
+
+        if not nombre or nombre.strip() == '':
+            raise ValueError('El nombre no puede estar vacío.')
+
+        if not apellido or apellido.strip() == '':
+            raise ValueError('El apellido no puede estar vacío.')
+
+        if importe < 0:
+            raise ValueError('El importe no puede ser negativo.')
+
         self.dni = dni
         self.nombre = nombre
         self.apellido = apellido
@@ -36,6 +49,12 @@ class Persona:
     # Metodo para que una persona publique un producto en el marketplace
     def publicar_producto(self, datos_producto: dict, marketplace: object) -> Producto:
 
+        if not isinstance(datos_producto, dict):
+            raise TypeError('Los datos de producto deben estar en un diccionario.')
+
+        if not hasattr(marketplace, 'productos'):
+            raise AttributeError('El marketplace no es válido.')
+
         # Se crea un objeto Producto a partir de un diccionario de datos
         # y se asocia a esta persona como vendedor
         producto = Producto.desde_diccionario(datos_producto, self)
@@ -44,14 +63,16 @@ class Persona:
         marketplace.productos.append(producto)
 
         return producto
-        # Mensaje informativo
-        # print(f'{self.nombre} {self.apellido} publicó el producto: {producto.titulo} a {producto.precio}€, el día {producto.fecha_publicacion}')
-
 
     # Metodo para comprar un producto
     def comprar(self, producto: Producto, cantidad: int) -> dict:
 
-        # Comprobamos si el producto está disponible
+        if not isinstance(producto, Producto):
+            raise TypeError('Debes proporcionar un objeto Producto.')
+
+        if cantidad <= 0:
+            raise ValueError('El cantidad no puede ser negativa.')
+
         if not producto.esta_disponible():
             raise Exception('Producto no disponible.')
 
@@ -82,9 +103,10 @@ class Persona:
 
         # Se añade el mensaje a la conversación indicando quién lo envía
         conversacion.agregar_mensaje(self, texto)
+        return True
 
     def meter_saldo(self, cantidad: float) -> bool:
         if cantidad <= 0:
-            return False
+            raise ValueError('El cantidad no puede ser negativa.')
         self.importe += cantidad
         return True

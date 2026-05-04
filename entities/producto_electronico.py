@@ -27,4 +27,4 @@ class ProductoElectronico(Producto):
     # Metodo especial para mostrar la información del producto al imprimirlo
     def __str__(self) -> str:
         # Llamamos al __str__ de la clase padre y añadimos los atributos específicos
-        return f'{super().__str__()} Marca: {self.marca}, Modelo: {self.modelo}, Garantía: {self.garantia} años'
+        return f'{super().__str__()} | Marca: {self.marca} | Modelo: {self.modelo} | Garantía: {self.garantia} años'

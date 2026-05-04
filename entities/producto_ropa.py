@@ -14,6 +14,7 @@ class ProductoRopa(Producto):
 
         if not material or material.strip() == '':
             raise ValueError('El material no puede estar vacío.')
+
         # Atributos propios de ProductoRopa
         self.talla = talla
         self.material = material
@@ -21,4 +22,4 @@ class ProductoRopa(Producto):
     # Metodo especial para mostrar información del producto al imprimirlo
     def __str__(self) -> str:
         # Llamamos al __str__ de la clase padre y añadimos los atributos propios
-        return f'{super().__str__()} Talla: {self.talla}, Material: {self.material}'
+        return f'{super().__str__()} | Talla: {self.talla} | Material: {self.material}'
