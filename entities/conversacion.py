@@ -1,6 +1,6 @@
 # conversacion.py
 
-# Importamos la clase Mensaje desde el archivo mensaje.py
+# Importamos la clase Mensaje desde el archivo mensaje.py.
 from entities.mensaje import Mensaje
 from entities.excepciones import UsuarioNoAutorizadoError
 
