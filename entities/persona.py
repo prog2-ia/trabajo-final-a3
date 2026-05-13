@@ -32,6 +32,8 @@ class Persona:
         self.tarjeta_premium = tarjeta_premium
         self.importe = importe
 
+        # Número de compras realizadas (para la condición premium)
+        self.compras_realizadas = 0
 
     # Metodo especial que define cómo se muestra el objeto al imprimirlo
     def __str__(self) -> str:
@@ -89,6 +91,9 @@ class Persona:
         # Actualizar saldo y stock
         self.importe -= precio_total
         producto.reducir_stock(cantidad)
+
+        # Registrar compra para la condición premium
+        self.compras_realizadas += 1
 
         return {
             'ok': True,
