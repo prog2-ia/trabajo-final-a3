@@ -10,7 +10,7 @@ class TarjetaPremium:
             raise ValueError('El código de la tarjeta es obligatorio.')
 
         if not fecha_caducidad or fecha_caducidad.strip() == '':
-            raise ValueError('El fecha de lcaducidad no puede estar vacía.')
+            raise ValueError('La fecha de la caducidad no puede estar vacía.')
 
         if descuento < 0 or descuento > 1:
             raise ValueError('El descuento debe estar entre 0 y 1.')
