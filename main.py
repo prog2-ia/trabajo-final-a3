@@ -1,6 +1,6 @@
 # main.py
 
-from entities.marketplace import Marketplace
+from entities.market_place import Marketplace
 from services.gestion_marketplace_service import GestionMarketplaceService
 from services.gestion_usuarios_service import GestionUsuariosService
 from services.gestion_productos_service import GestionProductosService
