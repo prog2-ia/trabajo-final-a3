@@ -21,12 +21,19 @@ class MenuCLI:
         print('9. Iniciar conversación')
         print('10. Enviar mensaje')
         print('11. Ver historial de conversación')
+        print('12. Guardar datos en ficheros de texto')
+        print('13. Guardar marketplace en pickle')
+        print('14. Cargar marketplace desde pickle')
+        print('15. Listar ficheros en data/')
+        print('16. Leer cabecera de fichero binario')
+        print('17. Crear copia de seguridad de data/')
         print('0. Salir')
 
     def ejecutar(self):
         while True:
             self.mostrar_menu()
             opcion = input('\nSelecciona una opción: ')
+
 
             try:
                 if opcion == '1':
@@ -61,6 +68,45 @@ class MenuCLI:
 
                 elif opcion == '11':
                     self.conversaciones_service.ver_historial_cli()
+
+                elif opcion == '12':
+                    self.marketplace_service.guardar_datos_texto()
+                    print('Datos guardados en ficheros de texto.')
+
+                elif opcion == '13':
+                    self.marketplace_service.guardar_marketplace_pickle()
+                    print('Marketplace guardado en pickle.')
+
+                elif opcion == '14':
+                    try:
+                        self.marketplace_service.cargar_marketplace_pickle()
+                        print('Marketplace cargado desde pickle.')
+                    except Exception as e:
+                        print('Error:', e)
+
+                elif opcion == '15':
+                    entries = self.marketplace_service.listar_data()
+                    if not entries:
+                        print('No hay ficheros en data/.')
+                    else:
+                        print('\nFicheros en data/:')
+                        for e in entries:
+                            print(' -', e)
+
+                elif opcion == '16':
+                    ruta = input('Ruta del fichero binario: ')
+                    try:
+                        cab = self.marketplace_service.leer_cabecera_binaria(ruta)
+                        print('Cabecera (bytes):', cab)
+                    except Exception as e:
+                        print('Error:', e)
+
+                elif opcion == '17':
+                    try:
+                        self.marketplace_service.crear_backup()
+                        print('Copia de seguridad creada en data/backup/')
+                    except Exception as e:
+                        print('Error:', e)
 
                 elif opcion == '0':
                     print('Saliendo del programa...')

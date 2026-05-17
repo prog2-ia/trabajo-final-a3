@@ -74,3 +74,9 @@ class Marketplace:
             fecha_caducidad='12/2030',
             descuento=0.20
         )
+
+    def buscar_usuario_por_dni(self, dni: str):
+        for u in self.usuarios:
+            if u.dni == dni:
+                return u
+        return None

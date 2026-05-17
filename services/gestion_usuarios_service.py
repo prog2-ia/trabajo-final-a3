@@ -128,45 +128,45 @@ def solicitar_tarjeta_premium(marketplace):
     print('Tarjeta premium asignada:', usuario.tarjeta_premium)
 
 
-def menu():
-    marketplace = Marketplace()
-
-    while True:
-        print('\n===== MARKETPLACE AVANZADO =====')
-        print('1. Registrar usuario')
-        print('2. Listar usuarios')
-        print('3. Publicar producto')
-        print('4. Listar productos')
-        print('5. Comprar producto')
-        print('6. Buscar producto por título')
-        print('7. Buscar producto por tipo')
-        print('8. Solicitar tarjeta premium')
-        print('0. Salir')
-
-        opcion = pedir_opcion()
-
-        if opcion == 1:
-            registrar_usuario(marketplace)
-        elif opcion == 2:
-            listar_usuarios(marketplace)
-        elif opcion == 3:
-            publicar_producto(marketplace)
-        elif opcion == 4:
-            listar_productos(marketplace)
-        elif opcion == 5:
-            comprar_producto(marketplace)
-        elif opcion == 6:
-            buscar_por_titulo(marketplace)
-        elif opcion == 7:
-            buscar_por_tipo(marketplace)
-        elif opcion == 8:
-            solicitar_tarjeta_premium(marketplace)
-        elif opcion == 0:
-            print('Saliendo del programa...')
-            break
-        else:
-            print('Opción no válida.')
-
-
-if __name__ == '__main__':
-    menu()
+# def menu():
+#     marketplace = Marketplace()
+#
+#     while True:
+#         print('\n===== MARKETPLACE AVANZADO =====')
+#         print('1. Registrar usuario')
+#         print('2. Listar usuarios')
+#         print('3. Publicar producto')
+#         print('4. Listar productos')
+#         print('5. Comprar producto')
+#         print('6. Buscar producto por título')
+#         print('7. Buscar producto por tipo')
+#         print('8. Solicitar tarjeta premium')
+#         print('0. Salir')
+#
+#         opcion = pedir_opcion()
+#
+#         if opcion == 1:
+#             registrar_usuario(marketplace)
+#         elif opcion == 2:
+#             listar_usuarios(marketplace)
+#         elif opcion == 3:
+#             publicar_producto(marketplace)
+#         elif opcion == 4:
+#             listar_productos(marketplace)
+#         elif opcion == 5:
+#             comprar_producto(marketplace)
+#         elif opcion == 6:
+#             buscar_por_titulo(marketplace)
+#         elif opcion == 7:
+#             buscar_por_tipo(marketplace)
+#         elif opcion == 8:
+#             solicitar_tarjeta_premium(marketplace)
+#         elif opcion == 0:
+#             print('Saliendo del programa...')
+#             break
+#         else:
+#             print('Opción no válida.')
+#
+#
+# if __name__ == '__main__':
+#     menu()
