@@ -1,6 +1,6 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/09uckVan)
 
-# MARKETPLACE
+# **MARKETPLACE**
 
 Este proyecto implementa un **Marketplace** en Python utilizando los principios fundamentales de la **Programación Orientada a Objetos (POO)**:
 
@@ -8,126 +8,243 @@ clases, objetos, encapsulamiento, herencia, polimorfismo, clases abstractas, mod
 
 El sistema permite gestionar usuarios, productos, compras, carritos, mensajes entre usuarios y tarjetas premium con descuento.
 
+Además, el proyecto se ha organizado siguiendo una **arquitectura por capas**, separándonoslas entidades, servicios, interfaz de usuario y punto de entrada.
 
-## Características principales
 
-1. Gestión de usuarios
+---
+
+
+# Funcionalidades principales
+
+## 1. Gestión de usuarios
+
 - Creación de usuarios con nombre, apellido y DNI válido.
 - Posibilidad de tener tarjeta premium con descuento.
-- Usuarios pueden:
+- Los usuarios pueden:
 	- Publicar productos
 	- Comprar productos
 	- Enviar mensajes
 	- Añadir saldo.
 
-2. Carrito de compra
+### Condición para la tarjeta premium
+La tarjeta premium solo puede obtenerse si el usuario ha realizado **al menos 3 compras distintas**.
+
+
+---
+
+## 2. Carrito de compra
+
 - Añadir productos al carrito.
 - Vaciar carrito.
 - Calcular total.
-- **Sobrecarga del operador +** para combinar carritos.
+- Sobrecarga del operador `+` para combinar carritos.
 
 
-3. Productos disponibles
-Incluye varios tipos de productos mediante **herencia**:
-- Producto (base)
-- ProductoRopa
-- ProductoElectronico
-- ProductoCoche
-
-Todos heredan de la clase abstracta Publicacion.
+---
 
 
-4. Sistema de pago
-Clases con herencia:
-- Pagar
-- PagarEfectivo
-- PagarTarjeta
+## 3. Productos disponibles
 
-Incluye método para **añadir saldo**.
+El sistema incluye varios tipos de productos mediante **herencia**:
 
+- `Producto`
+- `ProductoRopa`
+- `ProductoElectronico`
+- `ProductoCoche`
 
-5. Conversaciones
-Envío de mensajes entre usuarios.
-- Clase Conversacion y Mensaje.
+Todas las clases heredan de la clase abstracta `Publicacion`.
 
 
-6. Tarjeta Premium
+---
+
+
+## 4. Sistema de pago
+
+Clases implementadas con herencia:
+
+- `Pagar`
+- `PagarEfectivo`
+- `PagarTarjeta`
+
+Características:
+
+- Añadir saldo.
+- Validación de fondos antes de realizar compras.
+
+
+---
+
+
+## 5. Conversaciones y mensajería
+
+- Envío de mensajes entre usuarios.
+- Gestión de conversaciones privadas.
+
+Clases principales:
+
+- `Conversacion`
+- `Mensaje`
+
+
+---
+
+
+## 6. Tarjeta Premium
+
 - Descuento configurable (por defecto 10%).
-- Aplicado automáticamente en las compras.
+- Aplicación automática del descuento en las compras.
+- Disponible únicamente tras completar 3 compras distintas.
 
-## Estructura del proyecto
+
+---
+
+
+# Estructura del proyecto
+
 ```markdown
 📁 marketplace/
-├── carrito.py
-├── conversacion.py
-├── estado_producto.py
-├── market_place.py
-├── mensaje.py
-├── pagar.py
-├── pagar_efectivo.py
-├── pagar_tarjeta.py
-├── persona.py
-├── producto.py
-├── producto_coche.py
-├── producto_electronico.py
-├── producto_ropa.py
-├── publicacion.py
-├── tarjeta_premium.py
-├── requirements.txt
+├── entities/
+│   ├── carrito.py
+│   ├── conversacion.py
+│   ├── estado_producto.py
+│   ├── marketplace.py
+│   ├── mensaje.py
+│   ├── pagar.py
+│   ├── pagar_efectivo.py
+│   ├── pagar_tarjeta.py
+│   ├── persona.py
+│   ├── producto.py
+│   ├── producto_coche.py
+│   ├── producto_electronico.py
+│   ├── producto_ropa.py
+│   └── publicacion.py
+│
+├── services/
+│   ├── gestion_marketplace_service.py
+│   ├── gestion_usuarios_service.py
+│   ├── gestion_productos_service.py
+│   ├── gestion_conversaciones_service.py
+│   └── seed_data_service.py
+│
+├── ui/
+│   └── menu.py
+│
+├── tests/
+│   ├── test_persona.py
+│   ├── test_producto.py
+│   ├── test_carrito.py
+│   └── test_tarjeta_premium.py
+│
+├── main.py
 └── README.md
+
 ```
 
-## Instalación
+
+---
+
+
+# Instalación
+
 Este proyecto **no requiere librerías externas**.
-Solo necesitas Python 3.10+.
 
-1. Clona el repositorio:
+## Requisitos
 
-	git clone https://github.com/prog2-ia/trabajo-final-a3
-
-2. Entra en la carpeta del proyecto:
-
-	cd trabajo-final-a3
-
-3. Ejecuta el programa principal:
-
-	python market_place.py
-
-## Ejecución y pruebas
-El archivo market_place.py genera:
-- 10 usuarios aleatorios
-- Productos base y especializados
-- Pruebas de compra
-- Pruebas de carrito
-- Pruebas de descuento premium
-- Pruebas de mensajes
-
-Todo se muestra por consola.
+- Python 3.10 o superior
 
 
-## Principios de POO aplicados
-1. Encapsulamiento
-Atributos privados con _atributo.
+## 
 
-2. Herencia
-Clases como ProductoRopa, ProductoCoche, PagarTarjeta, etc.
+## Clonar el repositorio
 
-3. Polimorfismo
-Métodos sobrescritos como __str__, comprar, mostrar_info.
+```bash
+git clone https://github.com/prog2-ia/trabajo-final-a3
+```
 
-4. Clases abstractas
-Publicacion define métodos obligatorios.
+## Acceder al proyecto
 
-5. Modularidad
-
-Cada clase en su propio archivo.
+```bash
+cd trabajo-final-a3
+```
 
 
-## Trabajo en equipo y GitHub
+## Ejecutar el programa
+
+```bash
+python main.py
+```
+
+---
+
+
+# Ejecución y pruebas
+
+El sistema funciona mediante un menú interactivo (`MenuCLI`) que permite:
+
+- Registrar usuarios
+- Publicar productos
+- Listar productos
+- Comprar productos
+- Buscar por título o tipo
+- Iniciar conversaciones
+- Enviar mensajes
+- Solicitar tarjeta premium
+
+
+---
+
+
+# Principios de POO aplicados
+
+## 1. Encapsulamiento
+
+Uso de atributos privados mediante `_atributo`.
+
+## 2. Herencia
+
+Aplicada en clases como:
+
+- `ProductoRopa`
+- `ProductoCoche`
+- `PagarTarjeta`
+
+## Polimorfismo
+
+Sobrescritura de métodos como:
+
+- `__str__`
+- `comprar()`
+- `mostrar_info()`
+
+## Clases abstractas
+
+Las clases `Publicacion` y `Pagar` definen comportamientos obligatorios para sus subclases.
+
+## Modularidad
+
+Separación del proyecto en capas y archivos independientes.
+
+## Sobrecarga de operadores
+
+La clase `Carrito` implementa:
+
+- `+`
+- `len()`
+
+
+---
+
+
+# Trabajo en equipo y GitHub
+
 - Commits frecuentes y descriptivos.
+- Uso correcto de ramas y merges.
 - Reparto equilibrado de tareas.
 
 
-## Licencia
-Proyecto académico. Uso libre para aprendizaje.
+# Licencia
+
+Proyecto académico. 
+
+Uso libre con fines educativos y de aprendizaje.
 
