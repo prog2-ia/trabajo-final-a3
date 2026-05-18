@@ -36,11 +36,14 @@ class Marketplace:
         if not isinstance(producto, Producto):
             raise TypeError('Solo se pueden registrar objetos Producto.')
 
+        for p in self.productos:
+            if p.id == producto.id:
+                raise ValueError('Ya existe un producto con ese ID.')
+
         self.productos.append(producto)
 
     def listar_productos(self) -> list[Producto]:
-        return self.productos[:]
-
+        return [p for p in self.productos if not p.eliminado]
     def buscar_producto(self, id_producto: str) -> Producto:
         for p in self.productos:
             if p.id == id_producto:
@@ -50,7 +53,8 @@ class Marketplace:
     def eliminar_producto(self, producto: Producto) -> None:
         if producto not in self.productos:
             raise ValueError('El producto no está en el marketplace.')
-        self.productos.remove(producto)
+
+        producto.eliminado = True
 
 
     # BÚSQUEDAS
@@ -65,6 +69,16 @@ class Marketplace:
     # CONVERSACIONES
 
     def iniciar_conversacion(self, usuario1: Persona, usuario2: Persona) -> Conversacion:
+        for c in self.conversaciones:
+            mismos = (
+                    (c.usuario1 == usuario1 and c.usuario2 == usuario2)
+                    or
+                    (c.usuario1 == usuario2 and c.usuario2 == usuario1)
+            )
+
+            if mismos:
+                return c
+
         conv = Conversacion(usuario1, usuario2)
         self.conversaciones.append(conv)
         return conv
@@ -72,6 +86,8 @@ class Marketplace:
     def solicitar_tarjeta_premium(self, usuario: Persona) -> None:
         if usuario.compras_realizadas < 3:
             raise ValueError('El usuario no cumple los requisitos para obtener tarjeta premium.')
+        if usuario.tarjeta_premium:
+            raise ValueError('El usuario ya tiene tarjeta premium.')
 
         codigo = f'PREM-{random.randint(1000, 9999)}'
         usuario.tarjeta_premium = TarjetaPremium(

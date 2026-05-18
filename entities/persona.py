@@ -11,7 +11,7 @@ class Persona:
 
     # Constructor de la clase.
     # Se ejecuta cuando se crea una nueva persona.
-    def __init__(self, dni: str, nombre: str, apellido: str, tarjeta_premium: 'TarjetaPremium' = None, importe: float = 0.0) -> None:
+    def __init__(self, dni: str, nombre: str, apellido: str, tarjeta_premium: 'TarjetaPremium' = None, importe: float = 4000.0) -> None:
 
         if not dni or dni.strip() == '':
             raise ValueError('El DNI no puede estar vacío.')
@@ -31,7 +31,6 @@ class Persona:
         self.dni = dni.strip().upper()
         self.nombre = nombre
         self.apellido = apellido
-        # self.email = email
         self.tarjeta_premium = tarjeta_premium
         self.importe = importe
 
@@ -87,7 +86,7 @@ class Persona:
         producto = Producto.desde_diccionario(datos_producto, self)
 
         # Se añade el producto a la lista de productos del marketplace
-        marketplace.productos.append(producto)
+        marketplace.registrar_producto(producto)
 
         return producto
 
@@ -98,10 +97,13 @@ class Persona:
             raise TypeError('Debes proporcionar un objeto Producto.')
 
         if cantidad <= 0:
-            raise ValueError('El cantidad no puede ser negativa.')
+            raise ValueError('Ll cantidad no puede ser negativa.')
 
         if not producto.esta_disponible():
             raise Exception('Producto no disponible.')
+
+        if producto.vendedor.dni == self.dni:
+            raise ValueError('No puedes comprar tu propio producto.')
 
         # Restar dinero al comprador
         precio_total = producto.precio * cantidad
@@ -110,12 +112,20 @@ class Persona:
         if self.tarjeta_premium:
             precio_total = self.tarjeta_premium.aplicar_descuento(precio_total)
 
+        # Primero comprobamos stock
+        producto.reducir_stock(cantidad)
+        if producto.stock == 0:
+            producto.eliminado = True
+
+        # Después comprobamos saldo
         if self.importe < precio_total:
+            # Devolvemos el stock
+            producto.aumentar_stock(cantidad)
             raise SaldoInsuficienteError('No tienes saldo suficiente.')
 
-        # Actualizar saldo y stock
+        # Actualizar saldo
         self.importe -= precio_total
-        producto.reducir_stock(cantidad)
+        producto.vendedor.importe += precio_total
 
         # Registrar compra para la condición premium
         self.compras_realizadas += 1
@@ -137,7 +147,7 @@ class Persona:
 
     def meter_saldo(self, cantidad: float) -> bool:
         if cantidad <= 0:
-            raise ValueError('El cantidad no puede ser negativa.')
+            raise ValueError('La cantidad no puede ser negativa.')
         self.importe += cantidad
         return True
 

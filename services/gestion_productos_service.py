@@ -5,6 +5,7 @@
 from entities.producto_ropa import ProductoRopa
 from entities.producto_electronico import ProductoElectronico
 from entities.producto_coche import ProductoCoche
+from entities.excepciones import StockError, SaldoInsuficienteError
 
 
 class GestionProductosService:
@@ -57,9 +58,27 @@ class GestionProductosService:
 
         id_prod = input('ID del producto: ')
         titulo = input('Título: ')
-        precio = float(input('Precio: '))
+        try:
+            precio = float(input('Precio: '))
+
+            if precio <= 0:
+                print('El precio debe ser mayor que 0.')
+                return
+
+        except ValueError:
+            print('Debes introducir un número válido.')
+            return
         estado = input('Estado (Nuevo/Seminuevo/Usado): ')
-        stock = int(input('Stock: '))
+
+        try:
+            stock = int(input('Stock: '))
+            if stock < 0:
+                print('El stock no puede ser negativo.')
+                return
+        except ValueError:
+            print('Debes introducir un número válido.')
+            return
+
         fecha = input('Fecha publicación: ')
 
         try:
@@ -92,6 +111,8 @@ class GestionProductosService:
         except Exception as e:
             print('Error:', e)
 
+        self.marketplace.registrar_producto(producto)
+
     def listar_productos_cli(self):
         print('\n--- Lista de productos ---')
         productos = self.listar_productos()
@@ -113,14 +134,31 @@ class GestionProductosService:
             print('Usuario no encontrado.')
             return
 
-        id_prod = input('ID del producto: ')
+        print('\nProductos disponibles:')
+
+        for producto in self.marketplace.productos:
+            print(f'ID: {producto.id} | {producto.titulo} | Precio: {producto.precio}€ | Stock: {producto.stock}')
+
+        id_prod = input('\nIntroduce el ID del producto: ')
+
         try:
             producto = self.marketplace.buscar_producto(id_prod)
+            print(f'Stock disponible: {producto.stock}')
             cantidad = int(input('Cantidad: '))
+            if cantidad <= 0:
+                print('La cantidad debe ser mayor que 0.')
+                return
             self.comprar_producto(comprador, producto, cantidad)
             print('Compra realizada correctamente.')
+
+        except StockError as e:
+            print('Error de stock:', e)
+
+        except SaldoInsuficienteError as e:
+            print('Error de saldo:', e)
+
         except Exception as e:
-            print('Error:', e)
+            print('Error inesperado:', e)
 
     def buscar_por_titulo_cli(self):
         texto = input('\nTexto a buscar: ')

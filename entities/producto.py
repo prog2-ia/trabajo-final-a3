@@ -3,7 +3,7 @@
 # Importamos la clase Publicacion desde el archivo publicacion.py
 from entities.publicacion import Publicacion
 from entities.excepciones import StockError, PrecioInvalidoError
-
+from datetime import datetime
 # Definición de la clase Producto
 class Producto(Publicacion):
 
@@ -41,6 +41,11 @@ class Producto(Publicacion):
         if not fecha_publicacion or fecha_publicacion.strip() == '':
             raise ValueError('La fecha de publicación no puede estar vacía.')
 
+        try:
+            datetime.strptime(fecha_publicacion, '%d-%m-%Y')
+        except ValueError:
+            raise ValueError('La fecha debe tener formato DD-MM-YYYY.')
+
         self._id = id
         self._titulo = titulo
         self._precio = precio
@@ -48,6 +53,7 @@ class Producto(Publicacion):
         self._estado = estado
         self._stock = stock
         self._fecha_publicacion = fecha_publicacion
+        self.eliminado = False
 
     # Implementación del metodo abstracto
     def mostrar_info(self) -> str:
@@ -132,6 +138,10 @@ class Producto(Publicacion):
     @property
     def fecha_publicacion(self) -> str:
         return self._fecha_publicacion
+
+    @property
+    def vendedor(self):
+        return self._vendedor
 
 
     ## Metodo para validar si el precio es correcto

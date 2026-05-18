@@ -25,6 +25,8 @@ class Carrito:
         if not isinstance(producto, Producto):
             raise TypeError('Solo se pueden añadir objetos de tipo Producto al carrito.')
 
+        if producto in self.lista_productos:
+            raise ValueError('El producto ya está en el carrito.')
         # Añadimos un producto a la lista
         self.lista_productos.append(producto)
         return True
