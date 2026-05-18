@@ -1,0 +1,4 @@
+11111111H;Carlos;García;4000.0
+22222222J;Lucía;Martínez;4000.0
+33333333P;Pedro;Sánchez;4000.0
+60663779Z;Assia;Benmouna;4000.0
