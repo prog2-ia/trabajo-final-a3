@@ -28,7 +28,7 @@ class Conversacion:
         if autor not in self.usuarios:
             raise UsuarioNoAutorizadoError('El autor no pertenece a esta conversación.')
 
-        if hasattr(autor, 'nombre'):
+        if not hasattr(autor, 'nombre'):
             raise TypeError('El autor debe ser un objeto válido con atributo nombre.')
 
         if not texto or texto.strip() == '':

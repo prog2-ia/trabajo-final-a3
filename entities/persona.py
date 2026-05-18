@@ -16,6 +16,9 @@ class Persona:
         if not dni or dni.strip() == '':
             raise ValueError('El DNI no puede estar vacío.')
 
+        if not Persona.validar_dni(dni):
+            raise ValueError('El DNI no es válido.')
+
         if not nombre or nombre.strip() == '':
             raise ValueError('El nombre no puede estar vacío.')
 
@@ -25,7 +28,7 @@ class Persona:
         if importe < 0:
             raise ValueError('El importe no puede ser negativo.')
 
-        self.dni = dni
+        self.dni = dni.strip().upper()
         self.nombre = nombre
         self.apellido = apellido
         # self.email = email
@@ -47,6 +50,28 @@ class Persona:
 
         return cadena
 
+    # Metodo estático para validar dni
+    @staticmethod
+    def validar_dni(dni):
+
+        letras = 'TRWAGMYFPDXBNJZSQVHLCKE'
+
+        dni = dni.strip().upper()
+
+        if len(dni) != 9:
+            return False
+
+        if not dni[:-1].isdigit():
+            return False
+
+        if not dni[-1].isalpha():
+            return False
+
+        numero = int(dni[:-1])
+
+        letra_correcta = letras[numero % 23]
+
+        return dni[-1] == letra_correcta
 
     # Metodo para que una persona publique un producto en el marketplace
     def publicar_producto(self, datos_producto: dict, marketplace: object) -> Producto:

@@ -26,11 +26,20 @@ class Producto(Publicacion):
         if not estado or estado.strip() == '':
             raise ValueError('El estado no puede estar vacío.')
 
+        estado = estado.strip().capitalize()
+
+        estados_validos = ['Nuevo', 'Seminuevo', 'Usado']
+
+        if estado not in estados_validos:
+            raise ValueError(
+                'El estado debe ser: Nuevo, Seminuevo o Usado.'
+            )
+
         if stock < 0:
             raise ValueError('El stock no puede ser negativo.')
 
         if not fecha_publicacion or fecha_publicacion.strip() == '':
-            raise   ValueError('La fecha de publicación no puede estar vacía.')
+            raise ValueError('La fecha de publicación no puede estar vacía.')
 
         self._id = id
         self._titulo = titulo
@@ -76,6 +85,9 @@ class Producto(Publicacion):
     def __str__(self) -> str:
         return f'Producto: {self.titulo} | Precio: {self.precio} € | Stock: {self.stock}'
 
+    @property
+    def estado(self) -> str:
+        return self._estado
 
     # Getter del precio (permite acceder a precio como producto.precio)
     @property
@@ -87,7 +99,7 @@ class Producto(Publicacion):
     @precio.setter
     def precio(self, valor: float) -> None:
         if valor <= 0:
-            raise PrecioInvalidoError('La precio no puede ser negativo.')
+            raise PrecioInvalidoError('El precio no puede ser negativo.')
         self._precio = valor
 
 
@@ -101,7 +113,7 @@ class Producto(Publicacion):
     @stock.setter
     def stock(self, valor: int) -> None:
         if valor < 0:
-            raise ValueError('La stock no puede ser negativo.')
+            raise ValueError('El stock no puede ser negativo.')
         self._stock = valor
 
 

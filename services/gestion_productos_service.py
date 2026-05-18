@@ -46,7 +46,14 @@ class GestionProductosService:
         print('1. Ropa')
         print('2. Electrónico')
         print('3. Coche')
-        tipo = input('Selecciona tipo: ')
+        tipo = ''
+
+        while tipo != '1' and tipo != '2' and tipo != '3':
+
+            tipo = input('Selecciona tipo: ')
+
+            if tipo != '1' and tipo != '2' and tipo != '3':
+                print('Tipo no válido. Debes elegir 1, 2 o 3.')
 
         id_prod = input('ID del producto: ')
         titulo = input('Título: ')
@@ -129,17 +136,20 @@ class GestionProductosService:
 
     def buscar_por_tipo_cli(self):
         print('\n1. Ropa\n2. Electrónico\n3. Coche')
-        tipo = input('Selecciona tipo: ')
+
+        tipo = ''
+
+        while tipo not in ['1', '2', '3']:
+            tipo = input('Selecciona tipo (1-3): ')
+            if tipo != '1' and tipo != '2' and tipo != '3':
+                print('Tipo no válido.')
 
         if tipo == '1':
             resultados = self.buscar_por_tipo(ProductoRopa)
         elif tipo == '2':
             resultados = self.buscar_por_tipo(ProductoElectronico)
-        elif tipo == '3':
-            resultados = self.buscar_por_tipo(ProductoCoche)
         else:
-            print('Tipo no válido.')
-            return
+            resultados = self.buscar_por_tipo(ProductoCoche)
 
         if not resultados:
             print('No se encontraron productos.')

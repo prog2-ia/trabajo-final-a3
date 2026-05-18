@@ -13,9 +13,9 @@ class SeedDataService:
 
     def cargar_datos_demo(self):
         # Usuarios demo
-        u1 = self.usuarios_service.registrar_usuario('11111111A', 'Carlos', 'García')
-        u2 = self.usuarios_service.registrar_usuario('22222222B', 'Lucía', 'Martínez')
-        u3 = self.usuarios_service.registrar_usuario('33333333C', 'Pedro', 'Sánchez')
+        u1 = self.usuarios_service.registrar_usuario('11111111H', 'Carlos', 'García')
+        u2 = self.usuarios_service.registrar_usuario('22222222J', 'Lucía', 'Martínez')
+        u3 = self.usuarios_service.registrar_usuario('33333333P', 'Pedro', 'Sánchez')
 
         # Productos demo
         p1 = ProductoRopa('R001', 'Camiseta Oversize', 15.99, u1, 'Nuevo', 10, '15-02-2025', 'M', 'Algodón')

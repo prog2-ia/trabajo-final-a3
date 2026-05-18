@@ -38,6 +38,7 @@ class GestionConversacionesService:
         try:
             conv = self.iniciar_conversacion(u1, u2)
             print('Conversación iniciada.')
+
         except Exception as e:
             print('Error:', e)
 
@@ -51,10 +52,23 @@ class GestionConversacionesService:
             print('Usuario no encontrado.')
             return
 
-        idx = int(input('Índice de conversación: '))
+        if not self.marketplace.conversaciones:
+            print('No hay conversaciones existentes.')
+            return
+
+        print('\nConversaciones existentes:')
+        for i, conv in enumerate(self.marketplace.conversaciones):
+            print(f'{i}. {conv}')
+
+        try:
+            idx = int(input('Índice de conversación: '))
+        except ValueError:
+            print('Debes introducir un número.')
+            return
+
         try:
             conversacion = self.marketplace.conversaciones[idx]
-        except:
+        except IndexError:
             print('Conversación no encontrada.')
             return
 
@@ -69,10 +83,25 @@ class GestionConversacionesService:
     def ver_historial_cli(self):
         print('\n--- Ver historial ---')
 
-        idx = int(input('Índice de conversación: '))
+        if not self.marketplace.conversaciones:
+            print('No hay conversaciones existentes.')
+            return
+
+        print('\nConversaciones existentes:')
+        for i, conv in enumerate(self.marketplace.conversaciones):
+            print(f'{i}. {conv}')
+
+        try:
+            idx = int(input('Índice de conversación: '))
+
+        except ValueError:
+            print('Debes introducir un número.')
+            return
+
         try:
             conversacion = self.marketplace.conversaciones[idx]
-        except:
+
+        except IndexError:
             print('Conversación no encontrada.')
             return
 

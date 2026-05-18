@@ -1,4 +1,4 @@
-# tets.py
+# tests.py
 
 import random
 

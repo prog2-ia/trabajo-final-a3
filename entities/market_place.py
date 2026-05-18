@@ -3,6 +3,8 @@
 from entities.persona import Persona
 from entities.producto import Producto
 from entities.conversacion import Conversacion
+from entities.tarjeta_premium import TarjetaPremium
+import random
 
 
 class Marketplace:
@@ -17,8 +19,10 @@ class Marketplace:
         if not isinstance(persona, Persona):
             raise TypeError('Solo se pueden registrar objetos Persona.')
 
-        if persona in self.usuarios:
-            raise ValueError('El usuario ya está registrado.')
+        for usuario in self.usuarios:
+
+            if usuario.dni == persona.dni:
+                raise ValueError('Ya existe un usuario con ese DNI.')
 
         self.usuarios.append(persona)
 
@@ -69,8 +73,9 @@ class Marketplace:
         if usuario.compras_realizadas < 3:
             raise ValueError('El usuario no cumple los requisitos para obtener tarjeta premium.')
 
+        codigo = f'PREM-{random.randint(1000, 9999)}'
         usuario.tarjeta_premium = TarjetaPremium(
-            codigo=generar_codigo_unico(),
+            codigo=codigo,
             fecha_caducidad='12/2030',
             descuento=0.20
         )
