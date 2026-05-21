@@ -97,7 +97,7 @@ class Persona:
             raise TypeError('Debes proporcionar un objeto Producto.')
 
         if cantidad <= 0:
-            raise ValueError('Ll cantidad no puede ser negativa.')
+            raise ValueError('La cantidad debe ser mayor que 0.')
 
         if not producto.esta_disponible():
             raise Exception('Producto no disponible.')
@@ -105,27 +105,29 @@ class Persona:
         if producto.vendedor.dni == self.dni:
             raise ValueError('No puedes comprar tu propio producto.')
 
-        # Restar dinero al comprador
+        #  Validar stock
+        if producto.stock < cantidad:
+            raise Exception('No hay suficiente stock disponible.')
+
+        # Calcular precio total
         precio_total = producto.precio * cantidad
 
         # Aplicamos descuento si tiene tarjeta premium
         if self.tarjeta_premium:
             precio_total = self.tarjeta_premium.aplicar_descuento(precio_total)
 
-        # Primero comprobamos stock
-        producto.reducir_stock(cantidad)
-        if producto.stock == 0:
-            producto.eliminado = True
-
-        # Después comprobamos saldo
         if self.importe < precio_total:
-            # Devolvemos el stock
-            producto.aumentar_stock(cantidad)
-            raise SaldoInsuficienteError('No tienes saldo suficiente.')
+            raise SaldoInsuficienteError('Saldo insuficiente.')
 
-        # Actualizar saldo
+        # Realizar compra
+        producto.reducir_stock(cantidad)
+
         self.importe -= precio_total
         producto.vendedor.importe += precio_total
+
+        # Si el stock llega a 0, lo marcamos como eliminado
+        if producto.stock == 0:
+            producto.eliminado = True
 
         # Registrar compra para la condición premium
         self.compras_realizadas += 1

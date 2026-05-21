@@ -44,9 +44,10 @@ class Marketplace:
 
     def listar_productos(self) -> list[Producto]:
         return [p for p in self.productos if not p.eliminado]
+
     def buscar_producto(self, id_producto: str) -> Producto:
         for p in self.productos:
-            if p.id == id_producto:
+            if p.id == id_producto and not p.eliminado:
                 return p
         raise ValueError('Producto no encontrado.')
 
@@ -58,16 +59,14 @@ class Marketplace:
 
 
     # BÚSQUEDAS
-
     def buscar_por_titulo(self, texto: str) -> list[Producto]:
-        return [p for p in self.productos if texto.lower() in p.titulo.lower()]
+        return [p for p in self.productos if (texto.lower() in p.titulo.lower() and not p.eliminado)]
 
     def buscar_por_tipo(self, tipo: type) -> list[Producto]:
-        return [p for p in self.productos if isinstance(p, tipo)]
+        return [p for p in self.productos if (isinstance(p, tipo) and not p.eliminado)]
 
 
     # CONVERSACIONES
-
     def iniciar_conversacion(self, usuario1: Persona, usuario2: Persona) -> Conversacion:
         for c in self.conversaciones:
             mismos = (

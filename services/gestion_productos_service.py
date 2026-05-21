@@ -111,7 +111,6 @@ class GestionProductosService:
         except Exception as e:
             print('Error:', e)
 
-        self.marketplace.registrar_producto(producto)
 
     def listar_productos_cli(self):
         print('\n--- Lista de productos ---')
