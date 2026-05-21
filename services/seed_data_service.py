@@ -15,7 +15,7 @@ class SeedDataService:
         # Usuarios demo
         u1 = self.usuarios_service.registrar_usuario('11111111H', 'Carlos', 'García')
         u2 = self.usuarios_service.registrar_usuario('22222222J', 'Lucía', 'Martínez')
-        u3 = self.usuarios_service.registrar_usuario('33333333P', 'Pedro', 'Sánchez')
+        u3 = self.usuarios_service.registrar_usuario('33333333P', 'Pedro', 'Rimert')
 
         # Productos demo
         p1 = ProductoRopa('R001', 'Camiseta Oversize', 15.99, u1, 'Nuevo', 10, '15-02-2025', 'M', 'Algodón')

@@ -1,5 +1,5 @@
 from services.file_service import FileService
-
+from services.file_service import BIN_TEST_FILE
 
 class GestionMarketplaceService:
 
@@ -34,8 +34,7 @@ class GestionMarketplaceService:
 
     def demo_binario(self):
         self.file_service.escribir_binario_demo()
-        return self.file_service.leer_cabecera_binaria(self.file_service.BIN_TEST_FILE) \
-            if hasattr(self.file_service, 'BIN_TEST_FILE') else None
+        return self.file_service.leer_cabecera_binaria(BIN_TEST_FILE)
 
     def leer_cabecera_binaria(self, ruta: str, n_bytes: int = 8) -> bytes:
         return self.file_service.leer_cabecera_binaria(ruta, n_bytes)

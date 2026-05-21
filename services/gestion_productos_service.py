@@ -135,7 +135,7 @@ class GestionProductosService:
 
         print('\nProductos disponibles:')
 
-        for producto in self.marketplace.productos:
+        for producto in self.marketplace.listar_productos():
             print(f'ID: {producto.id} | {producto.titulo} | Precio: {producto.precio}€ | Stock: {producto.stock}')
 
         id_prod = input('\nIntroduce el ID del producto: ')

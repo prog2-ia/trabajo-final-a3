@@ -70,9 +70,9 @@ class Marketplace:
     def iniciar_conversacion(self, usuario1: Persona, usuario2: Persona) -> Conversacion:
         for c in self.conversaciones:
             mismos = (
-                    (c.usuario1 == usuario1 and c.usuario2 == usuario2)
+                    (c.usuarios[0] == usuario1 and c.usuarios[1] == usuario2)
                     or
-                    (c.usuario1 == usuario2 and c.usuario2 == usuario1)
+                    (c.usuarios[0] == usuario2 and c.usuarios[1] == usuario1)
             )
 
             if mismos:

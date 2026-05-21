@@ -29,8 +29,8 @@ class Persona:
             raise ValueError('El importe no puede ser negativo.')
 
         self.dni = dni.strip().upper()
-        self.nombre = nombre
-        self.apellido = apellido
+        self.nombre = Persona.validar_texto(nombre, 'nombre')
+        self.apellido = Persona.validar_texto(apellido, 'apellido')
         self.tarjeta_premium = tarjeta_premium
         self.importe = importe
 
@@ -71,6 +71,20 @@ class Persona:
         letra_correcta = letras[numero % 23]
 
         return dni[-1] == letra_correcta
+
+    # Metodo estatico para validar texto
+    @staticmethod
+    def validar_texto(texto: str, campo: str) -> str:
+
+        texto = texto.strip()
+
+        if len(texto) < 2:
+            raise ValueError(f'El {campo} debe tener al menos 2 caracteres.')
+
+        if not texto.replace(' ', '').isalpha():
+            raise ValueError(f'El {campo} solo puede contener letras.')
+
+        return texto.title()
 
     # Metodo para que una persona publique un producto en el marketplace
     def publicar_producto(self, datos_producto: dict, marketplace: object) -> Producto:

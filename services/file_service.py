@@ -79,5 +79,4 @@ class FileService:
                 shutil.copy(entry.path, BACKUP_DIR)
 
     def existe_fichero(self, ruta: str) -> bool:
-        import os
         return os.path.exists(ruta)
